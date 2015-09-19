@@ -3,6 +3,14 @@
 Template Name: Order
 */
 get_header();
+session_start();
+if(isset($_POST['order_category_ID']) && !empty($_POST['order_category_ID']) && isset($_POST['order_city_ID']) && !empty($_POST['order_city_ID'])){
+    $_SESSION["order_category"] = $_POST['order_category_ID'];
+    $_SESSION["order_city"] = $_POST['order_city_ID'];
+
+
+
+}
 
 if (isset($_POST['order_title']) && !empty($_POST['order_title']) && isset($_POST['order_content']) && !empty($_POST['order_content']) && isset($_POST['order_datapicker']) && !empty($_POST['order_datapicker']) && isset($_POST['order_user_name']) && !empty($_POST['order_user_name']) && isset($_POST['order_user_email']) && !empty($_POST['order_user_email'])) {
     $order_title = $_POST['order_title'];
@@ -30,6 +38,25 @@ if (isset($_POST['order_title']) && !empty($_POST['order_title']) && isset($_POS
 //    var_dump($order_user_name);
 //    var_dump($order_user_email);
 //    exit;
+$categories=array(9);
+//echo $order_city;
+//echo $order_category;
+//exit;
+
+//echo  $order_city;// $order_category;
+//echo  $order_category;// $order_category;
+//$int_order_city = intval($order_city);
+//$int_order_category = intval($order_category);
+
+//var_dump($int_order_city); exit;
+
+
+//$categories
+
+//var_dump($categories); exit;
+
+
+
 
     $post = array(
 
@@ -40,10 +67,14 @@ if (isset($_POST['order_title']) && !empty($_POST['order_title']) && isset($_POS
     'post_title' => $order_title,
     'post_type' => 'post',
         //'post_thumbnail' => $target_path.$order_image,
-    'post_category' => array(9),
+
+        'post_category' => array(0=>9, 1=>$_SESSION["order_category"], 2=>$_SESSION["order_city"])
 
 );
+
 $the_order_post_id = wp_insert_post($post);
+print_r($int_order_city);
+print_r($int_order_category);
     update_post_meta( $the_order_post_id, 'order_user_name', $order_user_name );
 
 ?>
@@ -54,7 +85,7 @@ $the_order_post_id = wp_insert_post($post);
 			<h1 class="post-title"><?php the_title() ?></h1>
            <?php while ( have_posts() ) : the_post(); ?>
             <div class="entry-content">
-				<?php echo the_content(); ?>
+				<?php //echo the_content(); ?>
 			</div>
            <?php
            endwhile; //resetting the page loop
@@ -108,10 +139,10 @@ $the_order_post_id = wp_insert_post($post);
             </script>
 
         </div>
-		<div class="clear"></div>
+
 	</div>
 </div>
-
+<div class="row">
     <form action="<?php echo site_url(); ?>/order-3/" method="POST" class="wpcf7-form" enctype="multipart/form-data" novalidate="novalidate">
         <div style="display: none;">
         </div>
@@ -147,8 +178,10 @@ $the_order_post_id = wp_insert_post($post);
             <input type="email" name="order_user_email" value="" size="40" class="wpcf7-form-control wpcf7-text wpcf7-email wpcf7-validates-as-email order_author_email form-control col col-md-12" aria-invalid="false" placeholder="Эл. почта"><br>
             <input type="checkbox" name="accept" required=""> <label> Я согласен </label><br>
             <input id="order_form_submit" type="submit" value="Сохранить" class="wpcf7-form-control wpcf7-submit btn"><img class="ajax-loader" src="http://localhost/poiskuslug/wp-content/plugins/contact-form-7/images/ajax-loader.gif" alt="Sending ..." style="visibility: hidden;"></p>
-        <div class="wpcf7-response-output wpcf7-display-none"></div>
+
     </form>
+
+    </div>
 
 
 <?php get_footer(); ?>

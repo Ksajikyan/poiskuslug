@@ -14,77 +14,142 @@ $main = array();
 foreach($categories as $cat)
 {
     $cat = (array)$cat;
-    if($cat['parent']!=9)
+    if($cat['parent']==8)
     {
         $main[$cat['parent']][] = $cat;
     }
 }
-var_dump($main); exit;
+//var_dump($main); exit;
+$args_city = array(
+    'show_option_all'    => '',
+    'orderby'            => 'name',
+    'order'              => 'ASC',
+    'style'              => 'list',
+    'show_count'         => 0,
+    'hide_empty'         => 1,
+    'use_desc_for_title' => 1,
+    'child_of'           => 9,
+    'name'               =>'order_city_ID',
+    'feed'               => '',
+    'feed_type'          => '',
+    'feed_image'         => '',
+    'exclude'            => '',
+    'exclude_tree'       => '',
+    'include'            => '',
+    'hierarchical'       => 2,
+    'title_li'           => __( 'Categories' ),
+    'show_option_none'   => __( '' ),
+    'number'             => null,
+    'echo'               => 1,
+    'depth'              => 0,
+    'current_category'   => 0,
+    'pad_counts'         => 0,
+    'taxonomy'           => 'category',
+    'walker'             => null
+);
+$args_order_category = array(
+    'show_option_all'    => '',
+    'orderby'            => 'name',
+    'order'              => 'ASC',
+    'style'              => 'list',
+    'show_count'         => 0,
+    'hide_empty'         => 1,
+    'use_desc_for_title' => 1,
+    'child_of'           => 18,
+    'name'               =>'order_category_ID',
+    'feed'               => '',
+    'feed_type'          => '',
+    'feed_image'         => '',
+    'exclude'            => '',
+    'exclude_tree'       => '',
+    'include'            => '',
+    'hierarchical'       => 2,
+    'title_li'           => __( 'Categories' ),
+    'show_option_none'   => __( '' ),
+    'number'             => null,
+    'echo'               => 1,
+    'depth'              => 0,
+    'current_category'   => 0,
+    'pad_counts'         => 0,
+    'taxonomy'           => 'category',
+    'walker'             => null
+);
+//wp_list_categories( $args_city );
+
+
+
+?>
+<ul>
+<?php// wp_list_categories('orderby=id&show_count=1&use_desc_for_title=0&child_of=15');exit; ?>
+</ul>
+
 ?>
 <div id="content">
 <div class="add-order-block" style="text-shadow: none;">
 <div class="inner-content">
 
-    <form class="form-inline" method="get" action="<?php echo site_url();?>/order-3/">
+    <form class="form-inline" method="POST" action="<?php echo site_url();?>/order-3/">
         <div class="form-group">
-            <label class="label_order" for="exampleInputEmail2">Мне требуется</label>
-
-
-                <input name="category" type="text" data-toggle="dropdown" class="form-control category" id="exampleInputName2" placeholder="Ремонт квартиры под ключ">
-<!--                <a id="dLabel" role="button"  class="btn btn-primary" data-target="#">-->
-<!--                    Dropdown <span class="caret"></span>-->
-<!--                </a>-->
-                <ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
-                    <?php foreach($main as $k=>$category){
-                        if($category['parent_id']==0){
-                            echo '<li class="dropdown-submenu">
-                                  <a tabindex="-1" data-value="'.$category['id'].'" >'.$category['description'].'</a>';
-
-
-                                  echo '<ul class="dropdown-menu">
-                                      <li><a tabindex="-1" data-value="11" href="#">Вскрытие и установка замкаl</a></li>
-                                      <li><a tabindex="-1" data-value="11" href="#">Вскрытие и установка замкаl</a></li>
-
-                                      </ul>';
-
-                                  echo '</li>';
-                        }
-
-                    }?>
-                    <li class="dropdown-submenu">
-                    <a tabindex="-1" data-value="11" >Мелкие бытовые услуги</a>
-                    <ul class="dropdown-menu">
-                        <li><a tabindex="-1" data-value="11" href="#">Вскрытие и установка замкаl</a></li>
-                        <li><a tabindex="-1" data-value="11" href="#">Вскрытие и установка замкаl</a></li>
-
-                        </ul>
-                    </li>
-                    <li class="divider"></li>
-                    <li class="dropdown-submenu">
-                    <li><a href="#">Some other action</a></li>
-                    <li class="divider"></li>
-                    <li class="dropdown-submenu">
-                        <a tabindex="-1" href="#">Hover me for more options</a>
-                        <ul class="dropdown-menu">
-                            <li><a tabindex="-1" href="#">Second level</a></li>
-                            <li class="dropdown-submenu">
-                                <a href="#">Even More..</a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="#">3rd level</a></li>
-                                    <li><a href="#">3rd level</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="#">Second level</a></li>
-                            <li><a href="#">Second level</a></li>
-                        </ul>
-                    </li>
-                </ul>
+            <ul class="form-control"><?php wp_dropdown_categories( $args_order_category ); ?></ul>
+<!--            <label class="label_order" for="exampleInputEmail2">Мне требуется</label>-->
+<!---->
+<!---->
+<!--                <input name="category" type="text" data-toggle="dropdown" class="form-control category" id="exampleInputName2" placeholder="Ремонт квартиры под ключ">-->
+<!--<!--                <a id="dLabel" role="button"  class="btn btn-primary" data-target="#">-->-->
+<!--<!--                    Dropdown <span class="caret"></span>-->-->
+<!--<!--                </a>-->-->
+<!--                <ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">-->
+<!--                    --><?php //foreach($main as $cat=>$categories){
+//                        if($categories['parent_id']==0){
+//                            echo '<li class="dropdown-submenu">
+//                                  <a tabindex="-1" data-value="'.$categories['id'].'" >'.$categories['description'].'</a>';
+//
+//
+//                                  echo '<ul class="dropdown-menu">
+//                                      <li><a tabindex="-1" data-value="11" href="#">Вскрытие и установка замкаl</a></li>
+//                                      <li><a tabindex="-1" data-value="11" href="#">Вскрытие и установка замкаl</a></li>
+//
+//                                      </ul>';
+//
+//                                  echo '</li>';
+//                        }
+//
+//                    }?>
+<!--                    <li class="dropdown-submenu">-->
+<!--                    <a tabindex="-1" data-value="11" >Мелкие бытовые услуги</a>-->
+<!--                    <ul class="dropdown-menu">-->
+<!--                        <li><a tabindex="-1" data-value="11" href="#">Вскрытие и установка замкаl</a></li>-->
+<!--                        <li><a tabindex="-1" data-value="11" href="#">Вскрытие и установка замкаl</a></li>-->
+<!---->
+<!--                        </ul>-->
+<!--                    </li>-->
+<!--                    <li class="divider"></li>-->
+<!--                    <li class="dropdown-submenu">-->
+<!--                    <li><a href="#">Some other action</a></li>-->
+<!--                    <li class="divider"></li>-->
+<!--                    <li class="dropdown-submenu">-->
+<!--                        <a tabindex="-1" href="#">Hover me for more options</a>-->
+<!--                        <ul class="dropdown-menu">-->
+<!--                            <li><a tabindex="-1" href="#">Second level</a></li>-->
+<!--                            <li class="dropdown-submenu">-->
+<!--                                <a href="#">Even More..</a>-->
+<!--                                <ul class="dropdown-menu">-->
+<!--                                    <li><a href="#">3rd level</a></li>-->
+<!--                                    <li><a href="#">3rd level</a></li>-->
+<!--                                </ul>-->
+<!--                            </li>-->
+<!--                            <li><a href="#">Second level</a></li>-->
+<!--                            <li><a href="#">Second level</a></li>-->
+<!--                        </ul>-->
+<!--                    </li>-->
+<!--                </ul>-->
 
 
         </div>
         <div class="form-group">
 
-            <input name="city" type="text" class="form-control city" id="exampleInputEmail2" placeholder="Москва">
+<!--            <input name="city" type="text" class="form-control city" id="exampleInputEmail2">-->
+           <ul class="form-control"><?php wp_dropdown_categories( $args_city ); ?></ul>
         </div>
         <button type="submit" class="btn btn-default add_order">Добавить заказ</button>
     </form>
@@ -226,5 +291,5 @@ var_dump($main); exit;
 <div class="clear"></div>
 
 <?php
-dynamic_sidebar( 'home_right_1' );
+//dynamic_sidebar( 'home_right_1' );
 get_footer();
