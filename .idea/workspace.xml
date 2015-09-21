@@ -1,19 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="95e07c0a-9001-4b25-b214-756e5f54172e" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wp-content/themes/pitch/js/custom.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/themes/pitch/functions.php" afterPath="$PROJECT_DIR$/wp-content/themes/pitch/functions.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/themes/pitch/header.php" afterPath="$PROJECT_DIR$/wp-content/themes/pitch/header.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/themes/pitch/css/home.css" afterPath="$PROJECT_DIR$/wp-content/themes/pitch/css/home.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/themes/pitch/home.php" afterPath="$PROJECT_DIR$/wp-content/themes/pitch/home.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/themes/pitch/loop.php" afterPath="$PROJECT_DIR$/wp-content/themes/pitch/loop.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/themes/pitch/css/order.css" afterPath="$PROJECT_DIR$/wp-content/themes/pitch/css/order.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/themes/pitch/page.php" afterPath="$PROJECT_DIR$/wp-content/themes/pitch/page.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/themes/pitch/single.php" afterPath="$PROJECT_DIR$/wp-content/themes/pitch/single.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/themes/pitch/tpl-board.php" afterPath="$PROJECT_DIR$/wp-content/themes/pitch/tpl-board.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wp-content/themes/pitch/tpl-order.php" afterPath="$PROJECT_DIR$/wp-content/themes/pitch/tpl-order.php" />
-    </list>
+    <list default="true" id="95e07c0a-9001-4b25-b214-756e5f54172e" name="Default" comment="" />
     <ignored path="poiskuslug.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path=".idea/dataSources.local.xml" />
@@ -582,7 +570,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1296" height="776" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
