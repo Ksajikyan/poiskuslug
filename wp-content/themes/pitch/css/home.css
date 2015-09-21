@@ -3,9 +3,11 @@
 }
 .reg_log{
     float: right;
-    margin-right: 2%;
-    margin-top: 4%;
+    margin-right: 26px;
+    margin-top: -1%;
     font-size: 18px;
+    background-color: #BEBEF1;
+    display: none;
 }
 #menu-item-27{
     margin-left: 180px;
@@ -38,6 +40,7 @@
     box-sizing: border-box;
     -moz-box-sizing: border-box;
     padding: 0 125px;
+
 }
 .add-order-block span {
     margin-right: 20px;
@@ -222,4 +225,14 @@ div {
     left: 127px !important;
     width: 291px;
 
+}
+.your_profile{
+    margin-left: 702px;
+    width: 145px;
+}
+.form-inline{
+    margin-left: 85px;
+}
+.add_order{
+    margin-top: -10px;
 }

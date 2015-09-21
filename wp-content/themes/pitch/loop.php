@@ -1,8 +1,8 @@
 <?php if(have_posts()) :  ?>
-	<div id="loop" class="loop-posts">
+	<div id="loop" class="loop-posts customer-loop">
 		<?php while(have_posts()) : the_post(); ?>
 			<div id="post-<?php the_ID() ?>" <?php post_class() ?>>
-				<div class="post-info">
+				<div class="post-info customer-posts">
 					<div class="date">
 						<span class="day"><?php echo get_the_date('d') ?></span>
 						<span class="month-year"><?php echo get_the_date('M') ?><br/><?php echo get_the_date('Y') ?></span>
@@ -20,13 +20,26 @@
 								}
 							?>
 						</div>
-						<div class="author">
+						<div class="customer_info">
 <!--							--><?php //printf(__('By %s', 'pitch'), get_the_author_link()) ?>
-                        <?php echo(get_post_meta( get_the_ID(), 'order_user_name', true )); ?>
+<!--                        --><?php //echo (get_post_meta(get_the_ID(), 'wp_custom_attachment', true));
+//                        echo  (get_post_meta( get_the_ID(), 'order_user_name', true ));
+//                        echo(get_post_meta( get_the_ID(), 'order_user_email', true ));
+//                        echo(get_post_meta( get_the_ID(), 'order_user_tel', true ));
+//                        echo(get_post_meta( get_the_ID(), 'order_start_day', true ));
+//                        echo(get_post_meta( get_the_ID(), 'order_location', true )); ?>
+                            <!--							--><?php //printf(__('By %s', 'pitch'), get_the_author_link()) ?>
+                            <?php echo (get_post_meta(get_the_ID(), 'wp_custom_attachment', true)); ?>
+                            <br><div class="customer_name">имя заказчика -  <?php echo  (get_post_meta( get_the_ID(), 'order_user_name', true )); ?> </div><br>
+                            <?php //echo(get_post_meta( get_the_ID(), 'order_user_email', true ));
+                            // echo(get_post_meta( get_the_ID(), 'order_user_tel', true )); ?>
+                            <br><br><div class="customer_start_day"> когда начать работу -  <?php echo(get_post_meta( get_the_ID(), 'order_start_day', true )); ?> </div>
+                            <div class="order_location"> место работы -  <?php echo(get_post_meta( get_the_ID(), 'order_location', true )); ?> </div>
+
 						</div>
 					</div>
 				</div>
-				<div class="post-main">
+				<div class="post-main customer-post-main">
 					<a href="<?php the_permalink() ?>"><?php echo get_the_post_thumbnail() ?></a>
 					
 					<h2 class="post-title"><a href="<?php the_permalink() ?>"><?php the_title() ?></a></h2>

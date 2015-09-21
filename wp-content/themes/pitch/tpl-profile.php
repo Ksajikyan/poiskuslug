@@ -1,6 +1,6 @@
 <?php
 /*
-Template Name: Board
+Template Name: Profile
 */
 
 get_header(); ?>
@@ -38,6 +38,7 @@ get_header(); ?>
                 ?>
             </div>
             <div class="content clearfix">
+
             </div>
             <div class="clear"></div>
         </div>

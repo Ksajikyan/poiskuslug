@@ -43,11 +43,14 @@
 		</a>
 		
 		<?php if(siteorigin_setting('general_search_input')) //get_search_form() ?>
-        <div class="reg_log">
-        <a class="registration_link" href="<?php echo site_url();?>/registration/"">Регистрация</a>
-        <a class="login_link" href="<?php echo site_url();?>/login/"">Войти</a>
-    </div>
-	</div>
+        <button class="your_profile">Ваш профиль</button>
+            <div class="reg_log">
+                <a class="login_link" href="<?php echo site_url();?>/profile/"">Профиль</a><br>
+                <a class="registration_link" href="<?php echo site_url();?>/registration/"">Регистрация</a><br>
+                <a class="login_link" href="<?php echo site_url();?>/login/"">Войти</a><br>
+                <a class="logout_link" href="<?php echo wp_logout_url(); ?>">Выйти</a>
+            </div>
+	    </div>
 </div>
 
 <div id="mainmenu" class="<?php echo siteorigin_setting('general_scale_main_menu') ? 'scaled' : '' ?>">

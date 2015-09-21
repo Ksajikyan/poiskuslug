@@ -9,7 +9,8 @@
 				printf(
 					__('Post on %s by %s', 'pitch'),
 					get_the_date(),
-					get_the_author_link()
+                    get_post_meta( get_the_ID(), 'order_user_name', true )
+
 				);
 				the_tags(__(' tagged: ', 'pitch'));
 				?>

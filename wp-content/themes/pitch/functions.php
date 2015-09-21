@@ -152,6 +152,7 @@ function pitch_enqueue_scripts(){
 	wp_enqueue_style( 'flexslider', get_template_directory_uri() . '/js/flexslider/flexslider.css', array(), '1.8' );
 
 	wp_enqueue_script( 'jquery.preload', get_template_directory_uri() . '/js/jquery.preload.min.js', array( 'jquery' ), '1.0.8' );
+	wp_enqueue_script( 'custom', get_template_directory_uri() . '/js/custom.js', array(), '1.0.8' );
 
 	wp_enqueue_script( 'pitch', get_template_directory_uri() . '/js/pitch.min.js', array( 'jquery', 'nivo', 'jquery.preload' ), SITEORIGIN_THEME_VERSION );
 	
@@ -491,3 +492,19 @@ function home_right_widgets_init() {
 }
 add_action( 'widgets_init', 'home_right_widgets_init' );
 //if (function_exists('user_submitted_posts')) user_submitted_posts();
+
+
+//function my_handle_attachment($file_handler,$post_id,$set_thu=false) {
+//    // check to make sure its a successful upload
+//    if ($_FILES[$file_handler]['error'] !== UPLOAD_ERR_OK) __return_false();
+//
+//    require_once(ABSPATH . "wp-admin" . '/includes/image.php');
+//    require_once(ABSPATH . "wp-admin" . '/includes/file.php');
+//    require_once(ABSPATH . "wp-admin" . '/includes/media.php');
+//
+//    $attach_id = media_handle_upload( $file_handler, $post_id );
+//
+//    // If you want to set a featured image frmo your uploads.
+//    if ($set_thu) set_post_thumbnail($post_id, $attach_id);
+//    return $attach_id;
+//}
