@@ -869,7 +869,7 @@ function usp_validate_options($input) {
 	$input['max-image-height'] = (is_numeric($input['max-image-height']) && ($usp_options['min-image-height'] <= $input['max-image-height'])) ? intval($input['max-image-height']) : $usp_options['max-image-height'];
 	$input['max-image-width']  = (is_numeric($input['max-image-width'])  && ($usp_options['min-image-width']  <= $input['max-image-width']))  ? intval($input['max-image-width'])  : $usp_options['max-image-width'];
 
-	$input['author']            = wp_filter_nohtml_kses($input['author']);
+	//$input['author']            = wp_filter_nohtml_kses($input['author']);
 	$input['usp_name']          = wp_filter_nohtml_kses($input['usp_name']);
 	$input['usp_url']           = wp_filter_nohtml_kses($input['usp_url']);
 	$input['usp_email']         = wp_filter_nohtml_kses($input['usp_email']);

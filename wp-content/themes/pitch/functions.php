@@ -508,3 +508,49 @@ add_action( 'widgets_init', 'home_right_widgets_init' );
 //    if ($set_thu) set_post_thumbnail($post_id, $attach_id);
 //    return $attach_id;
 //}
+
+wp_enqueue_script('multifile-js', get_bloginfo('template_directory') . '/multifile_compressed.js');
+
+function insert_attachment($file_id,$post_id,$featuredImage) {
+    require_once(ABSPATH . "wp-admin" . '/includes/image.php');
+    require_once(ABSPATH . "wp-admin" . '/includes/file.php');
+    require_once(ABSPATH . "wp-admin" . '/includes/media.php');
+    $attach_id = media_handle_upload( $file_id, $post_id );
+    if (is_int($attach_id)&&($featuredImage)) update_post_meta($post_id,'_thumbnail_id',$attach_id);
+    return $attach_id;
+}
+
+function fix_title($content,$limit) {
+    $excerpt = explode(' ', $content, $limit);
+    if (count($excerpt)>=$limit) {
+        array_pop($excerpt);
+        $excerpt = implode(" ",$excerpt);
+    } else {
+        $excerpt = implode(" ",$excerpt);
+    }
+    $excerpt = preg_replace('`\[[^\]]*\]`','',$excerpt);
+    return $excerpt;
+}
+
+function get_all_thumbnails() {
+    global $post;
+    $args = array(
+        'order'          => 'ASC',
+        'orderby'        => 'menu_order',
+        'post_type'      => 'attachment',
+        'post_parent'    => $post->ID,
+        'post_mime_type' => 'image',
+        'post_status'    => null,
+        'numberposts'    => -1,
+    );
+    $attachments = get_posts($args);
+    $i = 0;
+    if ($attachments) {
+        foreach ($attachments as $attachment) {
+            echo wp_get_attachment_link($attachment->ID, 'medium', false, false);
+            $i = $i + 1;
+        }
+    }
+    if ($i != 0) echo '<div style="clear: both;"><small>' . $i . ' pictures</small></div>';
+
+}

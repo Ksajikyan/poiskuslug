@@ -236,3 +236,39 @@ div {
 .add_order{
     margin-top: -10px;
 }
+#postBox {
+    width: 700px;
+    padding: 10px;
+    margin: 0 auto 0 auto;
+}
+
+#postBox #post_title {
+    width:100%;
+    border: 1px solid #ddd;
+1
+}
+
+#postBox #post_content {
+    width:100%;
+    border: 1px solid #ddd;
+    margin-bottom: 5px;
+}
+
+#postBox #submitPost {
+    float: right;
+}
+
+#postBox .post_category {
+    float: left;
+}
+
+#postBox .post_tags {
+    float: left;
+    margin-left: 10px;
+}
+
+#postBox #post_tags {
+    border: 1px solid #ddd;
+}
+#postBox .post_format {
+}

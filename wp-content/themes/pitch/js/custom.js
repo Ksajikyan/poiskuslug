@@ -6,9 +6,5 @@ jQuery(function($){
             $( ".reg_log" ).hide();
         }
         });
-    $(document).ready(function () {
-        var name = $('input[name=order_title]').val('');
-        //var email = $('input[name=email]').val('');
-        //var message = $('textarea[name=message]').html('');
-    });
+
 });

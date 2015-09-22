@@ -66,3 +66,7 @@
 		</div>
 	</div>
 <?php endif ?>
+<?php if(have_posts()): while(have_posts()): the_post(); ?>
+    <?php if(function_exists('get_all_thumbnails')) get_all_thumbnails(); ?>
+    <?php the_content();?>
+<?php endwhile; endif;?>
