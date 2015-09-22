@@ -2,6 +2,7 @@
 /*
 Template Name: Order
 */
+<<<<<<< HEAD
 
 get_header();
 session_start();
@@ -58,6 +59,82 @@ require ( ABSPATH . 'wp-admin/includes/image.php' );
 <!---->
 <!--        <p><input type="submit" value="Save all changes" name="save" style="display: none;"></p>-->
 <!--    </form>-->
+=======
+get_header();
+session_start();
+if(isset($_POST['order_category_ID']) && !empty($_POST['order_category_ID']) && isset($_POST['order_city_ID']) && !empty($_POST['order_city_ID'])){
+    $_SESSION["order_category"] = $_POST['order_category_ID'];
+    $_SESSION["order_city"] = $_POST['order_city_ID'];
+
+
+
+}
+
+if (isset($_POST['order_title']) && !empty($_POST['order_title']) && isset($_POST['order_content']) && !empty($_POST['order_content']) && isset($_POST['order_datapicker']) && !empty($_POST['order_datapicker']) && isset($_POST['order_user_name']) && !empty($_POST['order_user_name']) && isset($_POST['order_user_email']) && !empty($_POST['order_user_email'])) {
+    $order_title = $_POST['order_title'];
+
+    //$order_content = $_POST['order_content'];
+    //$order_image = $_POST['order_image'];
+    //$new_order_content = $order_content . '<a href="http://localhost/poiskuslug/wp-content/uploads/'.$order_image.'"><img src="http://localhost/poiskuslug/wp-content/uploads/' . $order_image . '" width="257" height="300" class="alignnone size-medium" /></a>';
+    $order_datapicker = $_POST['order_datapicker'];
+    if(isset($_FILES['order_image']) && !empty($_FILES['order_image'])){
+        $order_image = $_FILES['order_image']['name'];
+        $new_order_content = $_POST['order_content'].'<a href="http://localhost/poiskuslug/wp-content/uploads/'.$order_image.'"><img src="http://localhost/poiskuslug/wp-content/uploads/' . $order_image . '" width="257" height="300" class="alignnone size-medium" /></a>';
+       // $target_path = $_SERVER['DOCUMENT_ROOT'] . "poiskuslug/wp-content/uploads/" . basename($_FILES['order_image']['name']);
+
+    }
+    }
+    else{
+        $new_order_content = $_POST['order_content'];
+    }
+
+    $order_user_name = $_POST['order_user_name'];
+    $order_user_email = $_POST['order_user_email'];
+//    var_dump($order_title);
+//    var_dump($order_content);
+//    var_dump($order_datapicker);
+//    var_dump($order_user_name);
+//    var_dump($order_user_email);
+//    exit;
+$categories=array(9);
+//echo $order_city;
+//echo $order_category;
+//exit;
+
+//echo  $order_city;// $order_category;
+//echo  $order_category;// $order_category;
+//$int_order_city = intval($order_city);
+//$int_order_category = intval($order_category);
+
+//var_dump($int_order_city); exit;
+
+
+//$categories
+
+//var_dump($categories); exit;
+
+
+
+
+    $post = array(
+
+    'comment_status' => 'open',
+    'post_content'=> $new_order_content,
+    'post_name'         =>  '',
+    'post_status' => 'pending',
+    'post_title' => $order_title,
+    'post_type' => 'post',
+        //'post_thumbnail' => $target_path.$order_image,
+
+        'post_category' => array(0=>9, 1=>$_SESSION["order_category"], 2=>$_SESSION["order_city"])
+
+);
+
+$the_order_post_id = wp_insert_post($post);
+print_r($int_order_city);
+print_r($int_order_category);
+    update_post_meta( $the_order_post_id, 'order_user_name', $order_user_name );
+>>>>>>> 480cbb60f4461c899e32b0d79889217418b45e82
 
 
 <div id="post-single">
@@ -123,8 +200,13 @@ require ( ABSPATH . 'wp-admin/includes/image.php' );
 
 	</div>
 </div>
+<<<<<<< HEAD
 <div class="order_form_content">
     <form action="<?php echo site_url(); ?>/order-3/" method="POST" class="wpcf7-form" enctype="multipart/form-data">
+=======
+<div class="row">
+    <form action="<?php echo site_url(); ?>/order-3/" method="POST" class="wpcf7-form" enctype="multipart/form-data" novalidate="novalidate">
+>>>>>>> 480cbb60f4461c899e32b0d79889217418b45e82
         <div style="display: none;">
 
         </div>
@@ -161,11 +243,16 @@ require ( ABSPATH . 'wp-admin/includes/image.php' );
             <label>ваш телефонный номер *</label><br>
             <input type="number" name="order_user_tel" value="" size="40" class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required oreder_author_name form-control col col-md-12" aria-required="true" aria-invalid="false" placeholder="ваш телефонный номер" required><br>
             <input type="checkbox" name="accept" required=""> <label> Я согласен </label><br>
+<<<<<<< HEAD
             <input id="order_form_submit" type="submit" name="html-upload" value="Сохранить" class="wpcf7-form-control wpcf7-submit btn"><img class="ajax-loader" src="http://localhost/poiskuslug/wp-content/plugins/contact-form-7/images/ajax-loader.gif" alt="Sending ..." style="visibility: hidden;"></p>
+=======
+            <input id="order_form_submit" type="submit" value="Сохранить" class="wpcf7-form-control wpcf7-submit btn"><img class="ajax-loader" src="http://localhost/poiskuslug/wp-content/plugins/contact-form-7/images/ajax-loader.gif" alt="Sending ..." style="visibility: hidden;"></p>
+>>>>>>> 480cbb60f4461c899e32b0d79889217418b45e82
 
     </form>
 
     </div>
+<<<<<<< HEAD
 <?php
 if(isset($_POST['order_category_ID']) && !empty($_POST['order_category_ID']) && isset($_POST['order_city_ID']) && !empty($_POST['order_city_ID'])){
     $_SESSION["order_category"] = $_POST['order_category_ID'];
@@ -222,6 +309,8 @@ else{
     $new_order_content = $_POST['order_content'];
 
 }
+=======
+>>>>>>> 480cbb60f4461c899e32b0d79889217418b45e82
 
 
 get_footer(); ?>

@@ -28,7 +28,11 @@ $args_city = array(
     'show_count'         => 0,
     'hide_empty'         => 1,
     'use_desc_for_title' => 1,
+<<<<<<< HEAD
     'child_of'           => 15,
+=======
+    'child_of'           => 9,
+>>>>>>> 480cbb60f4461c899e32b0d79889217418b45e82
     'name'               =>'order_city_ID',
     'feed'               => '',
     'feed_type'          => '',
@@ -82,6 +86,70 @@ $args_order_category = array(
 <ul>
 <?php// wp_list_categories('orderby=id&show_count=1&use_desc_for_title=0&child_of=15');exit; ?>
 </ul>
+<<<<<<< HEAD
+=======
+
+?>
+<div id="content">
+<div class="add-order-block" style="text-shadow: none;">
+<div class="inner-content">
+
+    <form class="form-inline" method="POST" action="<?php echo site_url();?>/order-3/">
+        <div class="form-group">
+            <ul class="form-control"><?php wp_dropdown_categories( $args_order_category ); ?></ul>
+<!--            <label class="label_order" for="exampleInputEmail2">Мне требуется</label>-->
+<!---->
+<!---->
+<!--                <input name="category" type="text" data-toggle="dropdown" class="form-control category" id="exampleInputName2" placeholder="Ремонт квартиры под ключ">-->
+<!--<!--                <a id="dLabel" role="button"  class="btn btn-primary" data-target="#">-->-->
+<!--<!--                    Dropdown <span class="caret"></span>-->-->
+<!--<!--                </a>-->-->
+<!--                <ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">-->
+<!--                    --><?php //foreach($main as $cat=>$categories){
+//                        if($categories['parent_id']==0){
+//                            echo '<li class="dropdown-submenu">
+//                                  <a tabindex="-1" data-value="'.$categories['id'].'" >'.$categories['description'].'</a>';
+//
+//
+//                                  echo '<ul class="dropdown-menu">
+//                                      <li><a tabindex="-1" data-value="11" href="#">Вскрытие и установка замкаl</a></li>
+//                                      <li><a tabindex="-1" data-value="11" href="#">Вскрытие и установка замкаl</a></li>
+//
+//                                      </ul>';
+//
+//                                  echo '</li>';
+//                        }
+//
+//                    }?>
+<!--                    <li class="dropdown-submenu">-->
+<!--                    <a tabindex="-1" data-value="11" >Мелкие бытовые услуги</a>-->
+<!--                    <ul class="dropdown-menu">-->
+<!--                        <li><a tabindex="-1" data-value="11" href="#">Вскрытие и установка замкаl</a></li>-->
+<!--                        <li><a tabindex="-1" data-value="11" href="#">Вскрытие и установка замкаl</a></li>-->
+<!---->
+<!--                        </ul>-->
+<!--                    </li>-->
+<!--                    <li class="divider"></li>-->
+<!--                    <li class="dropdown-submenu">-->
+<!--                    <li><a href="#">Some other action</a></li>-->
+<!--                    <li class="divider"></li>-->
+<!--                    <li class="dropdown-submenu">-->
+<!--                        <a tabindex="-1" href="#">Hover me for more options</a>-->
+<!--                        <ul class="dropdown-menu">-->
+<!--                            <li><a tabindex="-1" href="#">Second level</a></li>-->
+<!--                            <li class="dropdown-submenu">-->
+<!--                                <a href="#">Even More..</a>-->
+<!--                                <ul class="dropdown-menu">-->
+<!--                                    <li><a href="#">3rd level</a></li>-->
+<!--                                    <li><a href="#">3rd level</a></li>-->
+<!--                                </ul>-->
+<!--                            </li>-->
+<!--                            <li><a href="#">Second level</a></li>-->
+<!--                            <li><a href="#">Second level</a></li>-->
+<!--                        </ul>-->
+<!--                    </li>-->
+<!--                </ul>-->
+>>>>>>> 480cbb60f4461c899e32b0d79889217418b45e82
 
 
 <div id="content">
@@ -92,6 +160,11 @@ $args_order_category = array(
             <ul class="form-control"><?php wp_dropdown_categories( $args_order_category ); ?></ul>
         </div>
         <div class="form-group">
+<<<<<<< HEAD
+=======
+
+<!--            <input name="city" type="text" class="form-control city" id="exampleInputEmail2">-->
+>>>>>>> 480cbb60f4461c899e32b0d79889217418b45e82
            <ul class="form-control"><?php wp_dropdown_categories( $args_city ); ?></ul>
         </div>
         <button type="submit" class="btn btn-default add_order">Добавить заказ</button>
