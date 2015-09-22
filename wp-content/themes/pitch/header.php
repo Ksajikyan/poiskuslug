@@ -94,10 +94,11 @@
 		<?php if(siteorigin_setting('general_search_input')) //get_search_form() ?>
         <button class="your_profile">Ваш профиль</button>
             <div class="reg_log">
-                <a class="login_link" href="<?php echo site_url();?>/profile/"">Профиль</a><br>
-                <a class="registration_link" href="<?php echo site_url();?>/registration/"">Регистрация</a><br>
-                <a class="login_link" href="<?php echo site_url();?>/login/"">Войти</a><br>
-                <a class="logout_link" href="<?php echo wp_logout_url(); ?>">Выйти</a>
+                <a class="login_link" href="<?php echo site_url();?>/account/">Редактировать профиль</a><br>
+                <a class="login_link" href="<?php echo site_url();?>/user/">Профиль</a><br>
+                <a class="registration_link" href="<?php echo site_url();?>/register/">Регистрация</a><br>
+                <a class="login_link" href="<?php echo site_url();?>/login-3/">Войти</a><br>
+                <a class="logout_link" href="<?php echo site_url();?>/logout/">Выйти</a>
             </div>
 	    </div>
 </div>

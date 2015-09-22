@@ -1,0 +1,19 @@
+= 3.0.0 =
+* 09/10/2015 3.0.0 Release
+* [Bugfix] Bulk edit for custom review post type now works.
+* [Bugfix] Fixed an awful incompatibility issue.
+* [Bugfix] "Snippet" and "More" were not working.
+* [Update] Removed some unnecessary JS from being output on pages
+
+= 3.0.0 =
+* 06/04/2015 Beta 2
+* [Bugfix] In some cases, importing page settings and reviews from 2.x did not work
+* [Bugfix] Incompatibility issue with "Wordpress SEO" plugin.
+* [Bugfix] Incompatibility issue with several plugins / themes.
+* [Bugfix] Pagination of reviews on the front-end was broken if the form was hidden
+* [Bugfix] Incompatibility issue with PHP 5.2 and 5.3
+
+= 3.0.0 =
+* 05/24/2015 Beta 1
+* [Update] Complete code cleanup and rewrite
+* [Update] Complete overhaul of settings and management interface
