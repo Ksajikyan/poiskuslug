@@ -60,43 +60,42 @@ require ( ABSPATH . 'wp-admin/includes/image.php' );
 <!--        <p><input type="submit" value="Save all changes" name="save" style="display: none;"></p>-->
 <!--    </form>-->
 <?php
-get_header();
-session_start();
-if(isset($_POST['order_category_ID']) && !empty($_POST['order_category_ID']) && isset($_POST['order_city_ID']) && !empty($_POST['order_city_ID'])){
-    $_SESSION["order_category"] = $_POST['order_category_ID'];
-    $_SESSION["order_city"] = $_POST['order_city_ID'];
 
-
-
-}
-
-if (isset($_POST['order_title']) && !empty($_POST['order_title']) && isset($_POST['order_content']) && !empty($_POST['order_content']) && isset($_POST['order_datapicker']) && !empty($_POST['order_datapicker']) && isset($_POST['order_user_name']) && !empty($_POST['order_user_name']) && isset($_POST['order_user_email']) && !empty($_POST['order_user_email'])) {
-    $order_title = $_POST['order_title'];
-
-    //$order_content = $_POST['order_content'];
-    //$order_image = $_POST['order_image'];
-    //$new_order_content = $order_content . '<a href="http://localhost/poiskuslug/wp-content/uploads/'.$order_image.'"><img src="http://localhost/poiskuslug/wp-content/uploads/' . $order_image . '" width="257" height="300" class="alignnone size-medium" /></a>';
-    $order_datapicker = $_POST['order_datapicker'];
-    if(isset($_FILES['order_image']) && !empty($_FILES['order_image'])){
-        $order_image = $_FILES['order_image']['name'];
-        $new_order_content = $_POST['order_content'].'<a href="http://localhost/poiskuslug/wp-content/uploads/'.$order_image.'"><img src="http://localhost/poiskuslug/wp-content/uploads/' . $order_image . '" width="257" height="300" class="alignnone size-medium" /></a>';
-       // $target_path = $_SERVER['DOCUMENT_ROOT'] . "poiskuslug/wp-content/uploads/" . basename($_FILES['order_image']['name']);
-
-    }
-    }
-    else{
-        $new_order_content = $_POST['order_content'];
-    }
-
-    $order_user_name = $_POST['order_user_name'];
-    $order_user_email = $_POST['order_user_email'];
-//    var_dump($order_title);
+//if(isset($_POST['order_category_ID']) && !empty($_POST['order_category_ID']) && isset($_POST['order_city_ID']) && !empty($_POST['order_city_ID'])){
+//    $_SESSION["order_category"] = $_POST['order_category_ID'];
+//    $_SESSION["order_city"] = $_POST['order_city_ID'];
+//
+//
+//
+//}
+//
+//if (isset($_POST['order_title']) && !empty($_POST['order_title']) && isset($_POST['order_content']) && !empty($_POST['order_content']) && isset($_POST['order_datapicker']) && !empty($_POST['order_datapicker']) && isset($_POST['order_user_name']) && !empty($_POST['order_user_name']) && isset($_POST['order_user_email']) && !empty($_POST['order_user_email'])) {
+//    $order_title = $_POST['order_title'];
+//
+//    //$order_content = $_POST['order_content'];
+//    //$order_image = $_POST['order_image'];
+//    //$new_order_content = $order_content . '<a href="http://localhost/poiskuslug/wp-content/uploads/'.$order_image.'"><img src="http://localhost/poiskuslug/wp-content/uploads/' . $order_image . '" width="257" height="300" class="alignnone size-medium" /></a>';
+//    $order_datapicker = $_POST['order_datapicker'];
+//    if(isset($_FILES['order_image']) && !empty($_FILES['order_image'])){
+//        $order_image = $_FILES['order_image']['name'];
+//        $new_order_content = $_POST['order_content'].'<a href="http://localhost/poiskuslug/wp-content/uploads/'.$order_image.'"><img src="http://localhost/poiskuslug/wp-content/uploads/' . $order_image . '" width="257" height="300" class="alignnone size-medium" /></a>';
+//       // $target_path = $_SERVER['DOCUMENT_ROOT'] . "poiskuslug/wp-content/uploads/" . basename($_FILES['order_image']['name']);
+//
+//    }
+//    }
+//    else{
+//        $new_order_content = $_POST['order_content'];
+//    }
+//
+//    $order_user_name = $_POST['order_user_name'];
+//    $order_user_email = $_POST['order_user_email'];
+////    var_dump($order_title);
 //    var_dump($order_content);
 //    var_dump($order_datapicker);
 //    var_dump($order_user_name);
 //    var_dump($order_user_email);
 //    exit;
-$categories=array(9);
+
 //echo $order_city;
 //echo $order_category;
 //exit;
@@ -116,24 +115,24 @@ $categories=array(9);
 
 
 
-    $post = array(
-
-    'comment_status' => 'open',
-    'post_content'=> $new_order_content,
-    'post_name'         =>  '',
-    'post_status' => 'pending',
-    'post_title' => $order_title,
-    'post_type' => 'post',
-        //'post_thumbnail' => $target_path.$order_image,
-
-        'post_category' => array(0=>9, 1=>$_SESSION["order_category"], 2=>$_SESSION["order_city"])
-
-);
-
-$the_order_post_id = wp_insert_post($post);
-print_r($int_order_city);
-print_r($int_order_category);
-    update_post_meta( $the_order_post_id, 'order_user_name', $order_user_name );
+//    $post = array(
+//
+//    'comment_status' => 'open',
+//    'post_content'=> $new_order_content,
+//    'post_name'         =>  '',
+//    'post_status' => 'pending',
+//    'post_title' => $order_title,
+//    'post_type' => 'post',
+//        //'post_thumbnail' => $target_path.$order_image,
+//
+//        'post_category' => array(0=>9, 1=>$_SESSION["order_category"], 2=>$_SESSION["order_city"])
+//
+//);
+//
+//$the_order_post_id = wp_insert_post($post);
+//print_r($int_order_city);
+//print_r($int_order_category);
+//    update_post_meta( $the_order_post_id, 'order_user_name', $order_user_name );
 
 
 ?>
@@ -185,15 +184,7 @@ print_r($int_order_category);
                     });
                 }
                 google.maps.event.addDomListener(window, 'load', initialize);		// setup initial map
-                $(document).ready(function() {
-                    $('#datepicker').datepicker();
-                    // get map button functionality
-                    $("#map-address-btn").click(function(event){
-                        event.preventDefault();
-                        var address = $("#location-address").val();					// grab the address from the input field
-                        codeAddress(address);										// geocode the address
-                    });
-                });
+
             </script>
 
         </div>

@@ -70,3 +70,7 @@
     <?php if(function_exists('get_all_thumbnails')) get_all_thumbnails(); ?>
     <?php the_content();?>
 <?php endwhile; endif;?>
+<?php if(get_the_author()==get_current_user_id()){
+    var_dump('ss');exit;
+}
+?>

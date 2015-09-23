@@ -7,4 +7,13 @@ jQuery(function($){
         }
         });
 
+    $('.add_post').click(function() {
+        $('#post_form').show();
+    });
+    $('#datepicker').datepicker();
+    $("#map-address-btn").click(function(event){
+        event.preventDefault();
+        var address = $("#location-address").val();					// grab the address from the input field
+        codeAddress(address);										// geocode the address
+    });
 });

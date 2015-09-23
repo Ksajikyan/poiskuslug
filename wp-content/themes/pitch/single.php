@@ -1,4 +1,29 @@
-<?php get_header(); the_post(); ?>
+<?php echo
+get_header();
+$user_id=get_current_user_id();
+$author_id=$post->post_author;
+
+if($user_id == $author_id){
+
+    ?>
+    <style type="text/css">.wpcr3_show_btn{
+        visibility: hidden;
+}</style>
+    <?php
+}else{
+
+    ?>
+    <style type="text/css">.wpcr3_show_btn{
+        visibility: visible;
+    }</style>
+    <?php
+}
+
+
+the_post(); ?>
+
+
+
 
 <div id="post-single" <?php post_class() ?>>
 	<div class="container">
@@ -30,4 +55,4 @@
 	</div>
 </div>
 
-<?php get_footer(); ?>
+<?php get_footer();
