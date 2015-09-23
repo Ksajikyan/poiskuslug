@@ -240,8 +240,11 @@ require ( ABSPATH . 'wp-admin/includes/image.php' );
 
 <?php
 if(isset($_POST['order_category_ID']) && !empty($_POST['order_category_ID']) && isset($_POST['order_city_ID']) && !empty($_POST['order_city_ID'])){
+
     $_SESSION["order_category"] = $_POST['order_category_ID'];
     $_SESSION["order_city"] = $_POST['order_city_ID'];
+    $_SESSION["order_category_parent"] = $_POST['order_category_parent_ID'];
+    $_SESSION["order_category_city_parent"] = $_POST['order_category_parent_ID'];
 }
 if (isset($_POST['order_title']) && !empty($_POST['order_title']) && isset($_POST['order_content']) && !empty($_POST['order_content']) && isset($_POST['order_datepicker']) && !empty($_POST['order_datepicker']) && isset($_POST['order_user_name']) && !empty($_POST['order_user_name']) && isset($_POST['order_user_email']) && !empty($_POST['order_user_email'])) {
     $order_title = $_POST['order_title'];
@@ -280,7 +283,7 @@ if (isset($_POST['order_title']) && !empty($_POST['order_title']) && isset($_POS
 
             //'post_thumbnail' => site_url().'/wp-content/uploads/'.$order_image,
 
-            'post_category' => array(0=>9, 1=>$_SESSION["order_category"], 2=>$_SESSION["order_city"])
+            'post_category' => array(0=>9, 1=>$_SESSION["order_category"], 2=>$_SESSION["order_city"], 3=>15, 4=>18)
 
         );
 

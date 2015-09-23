@@ -152,13 +152,14 @@ $args_order_category = array(
     <form class="form-inline" method="POST" action="<?php echo site_url();?>/order-3/">
         <div class="form-group">
             <ul class="form-control"><?php wp_dropdown_categories( $args_order_category ); ?></ul>
+<!--            <input type="hidden" name="order_category_parent_ID" value="--><?php //echo get_category_parents( wp_dropdown_categories( $args_order_category ), true, ' &raquo; ' );?><!--"></input>-->
         </div>
         <div class="form-group">
-
 
 <!--            <input name="city" type="text" class="form-control city" id="exampleInputEmail2">-->
 
            <ul class="form-control"><?php wp_dropdown_categories( $args_city ); ?></ul>
+<!--            <input type="hidden" name="order_category_city_parent_ID" value="--><?php //echo get_category_parents( wp_dropdown_categories( $args_city ), true, ' &raquo; ' );?><!--"></input>-->
         </div>
         <button type="submit" class="btn btn-default add_order">Добавить заказ</button>
     </form>
