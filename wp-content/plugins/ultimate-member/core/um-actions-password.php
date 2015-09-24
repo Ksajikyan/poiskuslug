@@ -80,16 +80,16 @@
 			wp_die( __('Hello, spam bot!') );
 
 		if ( $live_timestamp - $form_timestamp < 3 && um_get_option('enable_timebot') == 1 )
-			wp_die( __('Whoa, slow down! You\'re seeing this message because you tried to submit a form too fast and we think you might be a spam bot. If you are a real human being please wait a few seconds before submitting the form. Thanks!') );
+			wp_die( __('Вау, замедлить! Вы видите это сообщение, потому что вы пытались представить форму слишком быстро, и мы думаем, что вы могли бы быть спам bot. If you are a real human being please wait a few seconds before submitting the form. Thanks!') );
 
 		if ( strlen(trim( $_POST['username_b'] ) ) == 0 ) {
-			$ultimatemember->form->add_error('username_b', __('Please provide your username or email','ultimatemember') );
+			$ultimatemember->form->add_error('username_b', __('Пожалуйста, введите Ваше имя пользователя или адрес электронной почты','ultimatemember') );
 		}
 		
 		$user = $_POST['username_b'];
 		
 		if ( ( !is_email( $user ) && !username_exists( $user ) ) || ( is_email( $user ) && !email_exists( $user ) ) ) {
-			$ultimatemember->form->add_error('username_b', __(' We can\'t find an account registered with that address or username ','ultimatemember') );
+			$ultimatemember->form->add_error('username_b', __(' Мы не можем найти счет, зарегистрированный с этого адреса или имени пользователя ','ultimatemember') );
 		}
 		
 	}
@@ -114,31 +114,31 @@
 			wp_die( __('Whoa, slow down! You\'re seeing this message because you tried to submit a form too fast and we think you might be a spam bot. If you are a real human being please wait a few seconds before submitting the form. Thanks!') );
 		
 		if ( !$args['user_password'] ) {
-			$ultimatemember->form->add_error('user_password', __('You must enter a new password','ultimatemember') );
+			$ultimatemember->form->add_error('user_password', __('Вы должны ввести новый пароль','ultimatemember') );
 		}
 
 		if ( um_get_option('reset_require_strongpass') ) {
 			
 			if ( strlen( utf8_decode( $args['user_password'] ) ) < 8 ) {
-				$ultimatemember->form->add_error('user_password', __('Your password must contain at least 8 characters','ultimatemember') );
+				$ultimatemember->form->add_error('user_password', __('Ваш пароль должен содержать не менее 8 символов','ultimatemember') );
 			}
 				
 			if ( strlen( utf8_decode( $args['user_password'] ) ) > 30 ) {
-				$ultimatemember->form->add_error('user_password', __('Your password must contain less than 30 characters','ultimatemember') );
+				$ultimatemember->form->add_error('user_password', __('Ваш пароль должен содержать не более 30 символов','ultimatemember') );
 			}
 
 			if ( !$ultimatemember->validation->strong_pass( $args['user_password'] ) ) {
-				$ultimatemember->form->add_error('user_password', __('Your password must contain at least one lowercase letter, one capital letter and one number','ultimatemember') );
+				$ultimatemember->form->add_error('user_password', __('Ваш пароль должен содержать по крайней мере один строчную букву, одну заглавную букву и одну цифру','ultimatemember') );
 			}
 		
 		}
 
 		if ( !$args['confirm_user_password'] ) {
-			$ultimatemember->form->add_error('confirm_user_password', __('You must confirm your new password','ultimatemember') );
+			$ultimatemember->form->add_error('confirm_user_password', __('Вы должны подтвердить свой новый пароль','ultimatemember') );
 		}
 		
 		if ( $args['user_password'] != $args['confirm_user_password'] ) {
-			$ultimatemember->form->add_error('confirm_user_password', __('Your passwords do not match','ultimatemember') );
+			$ultimatemember->form->add_error('confirm_user_password', __('Ваши пароли не совпадают','ultimatemember') );
 		}
 
 	}

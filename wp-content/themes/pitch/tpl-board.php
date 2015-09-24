@@ -38,6 +38,7 @@ get_header(); ?>
                 ?>
             </div>
             <div class="content clearfix">
+
             </div>
             <div class="clear"></div>
         </div>

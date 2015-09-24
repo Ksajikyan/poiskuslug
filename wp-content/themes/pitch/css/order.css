@@ -75,8 +75,8 @@ html, body {
     margin-top: 10px;
 }
 .order_form_content{
-    margin-right: 77px;
-    margin-left: 67px;
+    margin-right: 241px;
+    margin-left: 220px;
 }
 .datepicker-dropdown{
     top: 735px !important;
@@ -109,4 +109,14 @@ html, body {
 .customer-post-main{
     margin-left: 600px !important;
 }
-
+.order_sidebar {
+    float: right;
+    width: 250px;
+}
+.image_1{
+    width: 100px;
+}
+.order_image_1{
+    float: left;
+    margin-left: 15px;
+}

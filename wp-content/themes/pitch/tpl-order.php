@@ -134,6 +134,80 @@ require ( ABSPATH . 'wp-admin/includes/image.php' );
 //print_r($int_order_category);
 //    update_post_meta( $the_order_post_id, 'order_user_name', $order_user_name );
 
+if(isset($_POST['order_category_ID']) && !empty($_POST['order_category_ID']) && isset($_POST['order_city_ID']) && !empty($_POST['order_city_ID'])){
+
+    $_SESSION["order_category"] = $_POST['order_category_ID'];
+    $_SESSION["order_city"] = $_POST['order_city_ID'];
+    $_SESSION["order_category_parent"] = $_POST['order_category_parent_ID'];
+    $_SESSION["order_category_city_parent"] = $_POST['order_category_parent_ID'];
+}
+if (isset($_POST['order_title']) && !empty($_POST['order_title']) && isset($_POST['order_content']) && !empty($_POST['order_content']) && isset($_POST['order_datepicker']) && !empty($_POST['order_datepicker']) && isset($_POST['order_user_name']) && !empty($_POST['order_user_name']) && isset($_POST['order_user_email']) && !empty($_POST['order_user_email'])) {
+    $order_title = $_POST['order_title'];
+
+    $order_user_name = $_POST['order_user_name'];
+    $order_user_email = $_POST['order_user_email'];
+    $order_user_tel = $_POST['order_user_tel'];
+    $order_start_day = $_POST['order_datepicker'];
+    $order_location = $_POST['order_location'];
+    $order_content = $_POST['order_content'];
+    //$order_image = $_POST['order_image'];
+    //$new_order_content = $order_content . '<a href="http://localhost/poiskuslug/wp-content/uploads/'.$order_image.'"><img src="http://localhost/poiskuslug/wp-content/uploads/' . $order_image . '" width="257" height="300" class="alignnone size-medium" /></a>';
+    $order_datapicker = $_POST['order_datapicker'];
+    $order_images = array();
+    if(isset($_FILES['order_image']) && $_FILES['order_image']!==NULL) {
+
+        foreach ($_FILES["order_image"]["error"] as $key => $error) {
+            if ($error == UPLOAD_ERR_OK) {
+
+                $uploaddir = ABSPATH.'wp-content/uploads/';
+                $fileOpt = explode('.', $_FILES['order_image']['name'][$key]);
+                $fileName = $fileOpt[0];
+                $fileExt = $fileOpt[1];
+                $newFileName = $fileName.'-'.rand().'.'.$fileExt;
+                array_push($order_images, $newFileName);
+                if (!move_uploaded_file($_FILES['order_image']['tmp_name'][$key], $uploaddir.$newFileName)) {
+                    echo "error while uploading images!\n";
+                }
+            }
+        }
+
+        // $target_path = $_SERVER['DOCUMENT_ROOT'] . "poiskuslug/wp-content/uploads/" . basename($_FILES['order_image']['name']);
+
+        //$uploads_dir = get_template_directory().'/images/uploads';
+    }
+    else{
+
+        $new_order_content = $_POST['order_content'];
+
+    }
+    $post = array(
+
+        'comment_status' => 'open',
+        'post_content'=> $order_content,
+        'post_name'         =>  '',
+        'post_status' => 'pending',
+        'post_title' => $order_title,
+        'post_type' => 'post',
+
+        //'post_thumbnail' => site_url().'/wp-content/uploads/'.$order_image,
+
+        'post_category' => array(0=>9, 1=>$_SESSION["order_category"], 2=>$_SESSION["order_city"], 3=>15, 4=>18)
+
+    );
+
+    $the_order_post_id = wp_insert_post($post);
+    update_post_meta( $the_order_post_id, 'order_user_name', $order_user_name );
+    update_post_meta( $the_order_post_id, 'order_user_email', $order_user_email );
+    update_post_meta( $the_order_post_id, 'order_user_tel', $order_user_tel );
+    update_post_meta( $the_order_post_id, 'order_start_day', $order_start_day );
+    update_post_meta( $the_order_post_id, 'order_location', $order_location );
+    foreach($order_images as $key=>$image){
+        update_post_meta( $the_order_post_id, 'order_image'.$key, $image );
+    }
+
+}
+
+
 
 ?>
 <div id="post-single">
@@ -201,7 +275,9 @@ require ( ABSPATH . 'wp-admin/includes/image.php' );
             <label for="user-submitted-content">Подробности заказа *</label><br>
             <textarea name="order_content" cols="40" rows="10" class="wpcf7-form-control wpcf7-textarea wpcf7-validates-as-required order_content form-control col col-md-12" aria-required="true" aria-invalid="false" placeholder="Подробности заказа" required></textarea><br>
             <label for="user-submitted-image">Добавить картинки</label><br>
-            <input  type="file" name="order_image[]" multiple="multiple" size="40" class="wpcf7-form-control wpcf7-file image" aria-invalid="false"></span></p>
+            <input  type="file" name="order_image[]" size="40" class="wpcf7-form-control wpcf7-file image" aria-invalid="false"></span></p>
+            <input  type="file" name="order_image[]" size="40" class="wpcf7-form-control wpcf7-file image" aria-invalid="false"></span></p>
+            <input  type="file" name="order_image[]" size="40" class="wpcf7-form-control wpcf7-file image" aria-invalid="false"></span></p>
         <div class="row">
             <div class="col col-md-4">
                 <label for="user-submitted-title">Когда начать работы</label><br>
@@ -239,65 +315,4 @@ require ( ABSPATH . 'wp-admin/includes/image.php' );
     </div>
 
 <?php
-if(isset($_POST['order_category_ID']) && !empty($_POST['order_category_ID']) && isset($_POST['order_city_ID']) && !empty($_POST['order_city_ID'])){
-
-    $_SESSION["order_category"] = $_POST['order_category_ID'];
-    $_SESSION["order_city"] = $_POST['order_city_ID'];
-    $_SESSION["order_category_parent"] = $_POST['order_category_parent_ID'];
-    $_SESSION["order_category_city_parent"] = $_POST['order_category_parent_ID'];
-}
-if (isset($_POST['order_title']) && !empty($_POST['order_title']) && isset($_POST['order_content']) && !empty($_POST['order_content']) && isset($_POST['order_datepicker']) && !empty($_POST['order_datepicker']) && isset($_POST['order_user_name']) && !empty($_POST['order_user_name']) && isset($_POST['order_user_email']) && !empty($_POST['order_user_email'])) {
-    $order_title = $_POST['order_title'];
-
-    $order_user_name = $_POST['order_user_name'];
-    $order_user_email = $_POST['order_user_email'];
-    $order_user_tel = $_POST['order_user_tel'];
-    $order_start_day = $_POST['order_datepicker'];
-    $order_location = $_POST['order_location'];
-    //$order_content = $_POST['order_content'];
-    //$order_image = $_POST['order_image'];
-    //$new_order_content = $order_content . '<a href="http://localhost/poiskuslug/wp-content/uploads/'.$order_image.'"><img src="http://localhost/poiskuslug/wp-content/uploads/' . $order_image . '" width="257" height="300" class="alignnone size-medium" /></a>';
-    $order_datapicker = $_POST['order_datapicker'];
-    if(isset($_FILES['order_image']) && $_FILES['order_image']!==NULL) {
-        $order_image = $_FILES['order_image']['name'];
-        //var_dump($order_image); exit;
-        $new_order_content = $_POST['order_content'] . '<a href="http://localhost/poiskuslug/wp-content/uploads/' . $order_image[0] . '"><img src="http://localhost/poiskuslug/wp-content/uploads/' . $order_image[0] . '" width="257" height="300" class="alignnone size-medium" /></a>';
-
-        // $target_path = $_SERVER['DOCUMENT_ROOT'] . "poiskuslug/wp-content/uploads/" . basename($_FILES['order_image']['name']);
-
-//$uploads_dir = get_template_directory().'/images/uploads';
-    }
-    else{
-
-            $new_order_content = $_POST['order_content'];
-
-        }
-        $post = array(
-
-            'comment_status' => 'open',
-            'post_content'=> $new_order_content,
-            'post_name'         =>  '',
-            'post_status' => 'pending',
-            'post_title' => $order_title,
-            'post_type' => 'post',
-
-            //'post_thumbnail' => site_url().'/wp-content/uploads/'.$order_image,
-
-            'post_category' => array(0=>9, 1=>$_SESSION["order_category"], 2=>$_SESSION["order_city"], 3=>15, 4=>18)
-
-        );
-
-        $the_order_post_id = wp_insert_post($post);
-        update_post_meta( $the_order_post_id, 'order_user_name', $order_user_name );
-        update_post_meta( $the_order_post_id, 'order_user_email', $order_user_email );
-        update_post_meta( $the_order_post_id, 'order_user_tel', $order_user_tel );
-        update_post_meta( $the_order_post_id, 'order_start_day', $order_start_day );
-        update_post_meta( $the_order_post_id, 'order_location', $order_location );
-
-
-}
-
-
-
-
 get_footer(); ?>

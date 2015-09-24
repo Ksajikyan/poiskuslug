@@ -70,6 +70,7 @@
 .um-cover-e {
 	text-align: center;
 	box-sizing: border-box;
+    background-color: rgb(59, 161, 218) !important;
 }
 
 .um-cover-e img {width: 100% !important}

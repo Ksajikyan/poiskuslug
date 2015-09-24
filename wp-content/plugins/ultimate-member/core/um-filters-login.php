@@ -30,10 +30,10 @@
 		if ( isset( $_REQUEST['err'] ) && !empty( $_REQUEST['err'] ) ) {
 			switch( $_REQUEST['err'] ) {
 				case 'blocked_email':
-					$err = __('This email address has been blocked.','ultimatemember');
+					$err = __('Этот адрес электронной почты был заблокирован.','ultimatemember');
 					break;
 				case 'blocked_ip':
-					$err = __('Your IP address has been blocked.','ultimatemember');
+					$err = __('Ваш IP-адрес был заблокирован.','ultimatemember');
 					break;
 			}
 		}
@@ -75,16 +75,16 @@
 
 			switch( $status ) {
 				case 'inactive':
-					return new WP_Error( $status, __('Your account has been disabled.','ultimatemember') );
+					return new WP_Error( $status, __('Ваш аккаунт был отключен.','ultimatemember') );
 					break;
 				case 'awaiting_admin_review':
-					return new WP_Error( $status, __('Your account has not been approved yet.','ultimatemember') );
+					return new WP_Error( $status, __('Ваш аккаунт не был одобрен еще.','ultimatemember') );
 					break;
 				case 'awaiting_email_confirmation':
-					return new WP_Error( $status, __('Your account is awaiting e-mail verification.','ultimatemember') );
+					return new WP_Error( $status, __('Ваша учетная запись ожидает проверки электронной почты.','ultimatemember') );
 					break;
 				case 'rejected':
-					return new WP_Error( $status, __('Your membership request has been rejected.','ultimatemember') );
+					return new WP_Error( $status, __('Ваш запрос на вступление была отклонена.','ultimatemember') );
 					break;
 			}
 			

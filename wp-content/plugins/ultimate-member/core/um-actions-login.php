@@ -45,13 +45,13 @@
 		
 		if ( !username_exists( $user_name ) ) {
 			if ( $is_email ) {
-				$ultimatemember->form->add_error( $field,  __(' Sorry, we can\'t find an account with that email address','ultimatemember') );
+				$ultimatemember->form->add_error( $field,  __(' К сожалению, мы не можем найти учетную запись с этим адресом электронной почты','ultimatemember') );
 			} else {
-				$ultimatemember->form->add_error( $field,  __(' Sorry, we can\'t find an account with that username','ultimatemember') );
+				$ultimatemember->form->add_error( $field,  __(' К сожалению, мы не можем найти учетную запись пользователя с этим','ultimatemember') );
 			}
 		} else {
 			if ( $args['user_password'] == '' ) {
-				$ultimatemember->form->add_error( 'user_password',  __('Please enter your password','ultimatemember') );
+				$ultimatemember->form->add_error( 'user_password',  __('Пожалуйста введите ваш пароль','ultimatemember') );
 			}
 		}
 		
@@ -59,7 +59,7 @@
 		if ( $user && wp_check_password( $args['user_password'], $user->data->user_pass, $user->ID) ) {
 			$ultimatemember->login->auth_id = username_exists( $user_name );
 		} else {
-			$ultimatemember->form->add_error( 'user_password',  __('Password is incorrect. Please try again.','ultimatemember') );
+			$ultimatemember->form->add_error( 'user_password',  __('Неверный пароль. Пожалуйста, попробуйте еще раз.','ultimatemember') );
 		}
 		
 	}
@@ -127,7 +127,7 @@
 		$rememberme = ( isset($args['rememberme']) ) ? 1 : 0;
 		
 		if ( um_get_option('deny_admin_frontend_login') && strstr( um_user('wp_roles' ), 'administrator' ) )
-			wp_die( __('This action has been prevented for security measures.','ultimatemember') );
+			wp_die( __('Это действие было предотвращено мер безопасности.','ultimatemember') );
 		
 		$ultimatemember->user->auto_login( um_user('ID'), $rememberme );
 		
@@ -202,7 +202,7 @@
 		<div class="um-col-alt">
 
 			<?php if ( isset( $args['show_rememberme'] ) && $args['show_rememberme'] ) {
-					echo $ultimatemember->fields->checkbox('rememberme', __('Keep me signed in','ultimatemember') );
+					echo $ultimatemember->fields->checkbox('rememberme', __('Запомнить меня','ultimatemember') );
 			} ?>
 
 			<?php if ( isset($args['secondary_btn']) && $args['secondary_btn'] != 0 ) { ?>
@@ -235,7 +235,7 @@
 	?>
 		
 		<div class="um-col-alt-b">
-			<a href="<?php echo um_get_core_page('password-reset'); ?>" class="um-link-alt"><?php _e('Forgot your password?','ultimatemember'); ?></a>
+			<a href="<?php echo um_get_core_page('password-reset'); ?>" class="um-link-alt"><?php _e('Забыли пароль?','ultimatemember'); ?></a>
 		</div>
 		
 		<?php

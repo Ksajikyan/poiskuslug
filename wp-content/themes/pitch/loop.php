@@ -1,4 +1,37 @@
 <?php if(have_posts()) :  ?>
+    <div id="blueimp-gallery" class="blueimp-gallery">
+        <!-- The container for the modal slides -->
+        <div class="slides"></div>
+        <!-- Controls for the borderless lightbox -->
+        <h3 class="title"></h3>
+        <a class="prev">‹</a>
+        <a class="next">›</a>
+        <a class="close">×</a>
+        <a class="play-pause"></a>
+        <ol class="indicator"></ol>
+        <!-- The modal dialog, which will be used to wrap the lightbox content -->
+        <div class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title"></h4>
+                    </div>
+                    <div class="modal-body next"></div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default pull-left prev">
+                            <i class="glyphicon glyphicon-chevron-left"></i>
+                            Previous
+                        </button>
+                        <button type="button" class="btn btn-primary next">
+                            Next
+                            <i class="glyphicon glyphicon-chevron-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 	<div id="loop" class="loop-posts customer-loop">
 		<?php while(have_posts()) : the_post(); ?>
 			<div id="post-<?php the_ID() ?>" <?php post_class() ?>>
@@ -47,7 +80,7 @@
 					<div class="excerpt content">
 						<?php the_excerpt() ?>
 					</div>
-					
+
 					<div class="read-more">
 						<a href="<?php the_permalink() ?>">
 							<?php _e('Read More', 'pitch') ?>
@@ -55,22 +88,53 @@
 						</a>
 					</div>
 				</div>
-				<div class="clear"></div>
+
+
+<!--				<div class="clear"></div>-->
 			</div>
+            <div class="row">
+            <div class="order_image_1">
+                <?php if(get_post_meta( get_the_ID(), 'order_image0', true )!='') {
+                    echo '<a href="'.site_url().'/wp-content/uploads/'.get_post_meta(get_the_ID(), 'order_image0', true).'" title="'.get_post_meta(get_the_ID(), 'order_image0', true).'" data-gallery><img class="image_1 img-rounded" src="' . site_url() . '/wp-content/uploads/' . get_post_meta(get_the_ID(), 'order_image0', true) . '"></a>';
+                }
+                if(get_post_meta( get_the_ID(), 'order_image1', true )!='') {
+                    echo '<a href="'.site_url().'/wp-content/uploads/'.get_post_meta(get_the_ID(), 'order_image1', true).'" title="'.get_post_meta(get_the_ID(), 'order_image1', true).'" data-gallery><img class="image_1 img-rounded" src="' . site_url() . '/wp-content/uploads/' . get_post_meta(get_the_ID(), 'order_image1', true) . '"></a>';
+                }
+                if(get_post_meta( get_the_ID(), 'order_image2', true )!='') {
+                    echo '<a href="'.site_url().'/wp-content/uploads/'.get_post_meta(get_the_ID(), 'order_image2', true).'" title="'.get_post_meta(get_the_ID(), 'order_image2', true).'" data-gallery><img class="image_1 img-rounded" src="' . site_url() . '/wp-content/uploads/' . get_post_meta(get_the_ID(), 'order_image2', true) . '"></a>';
+                }
+                ?>
+
+            </div>
+            </div>
 		<?php endwhile; ?>
-		
+
 		<div class="pagination">
 			<?php if($GLOBALS['wp_query']->max_num_pages > 1) : ?><div class="separator"></div><?php endif ?>
 			<?php posts_nav_link(' ', __('Newer Entries', 'pitch'), __('Older Entries', 'pitch')); ?>
 			<?php if($GLOBALS['wp_query']->max_num_pages > 1) : ?><div class="clear"></div><div class="separator"></div><?php endif ?>
 		</div>
 	</div>
+<?php if ( is_active_sidebar( 'home_right_1' ) ) : ?>
+    <div id="primary-sidebar" class="primary-sidebar widget-area order_sidebar" role="complementary">
+        <?php dynamic_sidebar( 'home_right_1' ); ?>
+    </div><!-- #primary-sidebar
+<?php endif; ?>
+    </div>
+
 <?php endif ?>
-<?php if(have_posts()): while(have_posts()): the_post(); ?>
-    <?php if(function_exists('get_all_thumbnails')) get_all_thumbnails(); ?>
-    <?php the_content();?>
-<?php endwhile; endif;?>
+
+
 <?php if(get_the_author()==get_current_user_id()){
-    var_dump('ss');exit;
+
 }
 ?>
+<!--<div class="order_sidebar">-->
+<!--    --><?php //dynamic_sidebar( 'home_right_1' ); ?>
+<!--</div>-->
+<?php //if ( is_active_sidebar( 'home_right_1' ) ) : ?>
+<!--<div id="primary-sidebar" class="primary-sidebar widget-area" role="complementary">-->
+<!--    --><?php //dynamic_sidebar( 'home_right_1' ); ?>
+<!--</div><!-- #primary-sidebar-->
+<?php //endif; ?>
+

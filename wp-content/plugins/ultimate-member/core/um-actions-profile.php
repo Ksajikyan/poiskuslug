@@ -244,7 +244,7 @@
 					
 						if ( !isset( $ultimatemember->user->cannot_edit ) ) { ?>
 					
-						<a href="#" class="um-cover-add um-manual-trigger" data-parent=".um-cover" data-child=".um-btn-auto-width"><span class="um-cover-add-i"><i class="um-icon-plus um-tip-n" title="<?php _e('Upload a cover photo','ultimatemember'); ?>"></i></span></a>
+						<a href="#" class="um-cover-add um-manual-trigger" data-parent=".um-cover" data-child=".um-btn-auto-width"><span class="um-cover-add-i"><i class="um-icon-plus um-tip-n" title="<?php _e('Загрузить фото на обложке','ultimatemember'); ?>"></i></span></a>
 					
 					<?php }
 					
@@ -317,8 +317,8 @@
 						if ( !um_profile('profile_photo') ) { // has profile photo
 						
 							$items = array(
-								'<a href="#" class="um-manual-trigger" data-parent=".um-profile-photo" data-child=".um-btn-auto-width">'.__('Upload photo','ultimatemember').'</a>',
-								'<a href="#" class="um-dropdown-hide">'.__('Cancel','ultimatemember').'</a>',
+								'<a href="#" class="um-manual-trigger" data-parent=".um-profile-photo" data-child=".um-btn-auto-width">'.__('Загрузить фото','ultimatemember').'</a>',
+								'<a href="#" class="um-dropdown-hide">'.__('Отменить','ultimatemember').'</a>',
 							);
 							
 							echo $ultimatemember->menu->new_ui( 'bc', 'div.um-profile-photo', 'click', $items );
@@ -326,9 +326,9 @@
 						} else if ( $ultimatemember->fields->editing == true ) {
 						
 							$items = array(
-								'<a href="#" class="um-manual-trigger" data-parent=".um-profile-photo" data-child=".um-btn-auto-width">'.__('Change photo','ultimatemember').'</a>',
-								'<a href="#" class="um-reset-profile-photo" data-user_id="'.um_profile_id().'" data-default_src="'.um_get_default_avatar_uri().'">'.__('Remove photo','ultimatemember').'</a>',
-								'<a href="#" class="um-dropdown-hide">'.__('Cancel','ultimatemember').'</a>',
+								'<a href="#" class="um-manual-trigger" data-parent=".um-profile-photo" data-child=".um-btn-auto-width">'.__('Изменить фотографию','ultimatemember').'</a>',
+								'<a href="#" class="um-reset-profile-photo" data-user_id="'.um_profile_id().'" data-default_src="'.um_get_default_avatar_uri().'">'.__('Удалить фото','ultimatemember').'</a>',
+								'<a href="#" class="um-dropdown-hide">'.__('Отменить','ultimatemember').'</a>',
 							);
 							
 							echo $ultimatemember->menu->new_ui( 'bc', 'div.um-profile-photo', 'click', $items );
@@ -377,7 +377,7 @@
 					<?php } else if ( $ultimatemember->fields->editing == true  && $args['show_bio'] ) { ?>
 					
 					<div class="um-meta-text">
-						<textarea placeholder="<?php _e('Tell us a bit about yourself...','ultimatemember'); ?>" name="<?php echo 'description-' . $args['form_id']; ?>" id="<?php echo 'description-' . $args['form_id']; ?>"><?php if ( um_user('description') ) { echo um_user('description'); } ?></textarea>
+						<textarea placeholder="<?php _e('Расскажите нам немного о себе ...','ultimatemember'); ?>" name="<?php echo 'description-' . $args['form_id']; ?>" id="<?php echo 'description-' . $args['form_id']; ?>"><?php if ( um_user('description') ) { echo um_user('description'); } ?></textarea>
 						
 						<?php if ( $ultimatemember->fields->is_error('description') ) {
 						echo $ultimatemember->fields->field_error( $ultimatemember->fields->show_error('description'), true ); } 
@@ -467,10 +467,10 @@
 			<?php
 			
 			$items = array(
-				'editprofile' => '<a href="'.um_edit_profile_url().'" class="real_url">'.__('Edit Profile','ultimatemember').'</a>',
-				'myaccount' => '<a href="'.um_get_core_page('account').'" class="real_url">'.__('My Account','ultimatemember').'</a>',
-				'logout' => '<a href="'.um_get_core_page('logout').'" class="real_url">'.__('Logout','ultimatemember').'</a>',
-				'cancel' => '<a href="#" class="um-dropdown-hide">'.__('Cancel','ultimatemember').'</a>',
+				'editprofile' => '<a href="'.um_edit_profile_url().'" class="real_url">'.__('Редактировать профиль','ultimatemember').'</a>',
+				'myaccount' => '<a href="'.um_get_core_page('account').'" class="real_url">'.__('Профиль','ultimatemember').'</a>',
+				'logout' => '<a href="'.um_get_core_page('logout').'" class="real_url">'.__('Выйти','ultimatemember').'</a>',
+				'cancel' => '<a href="#" class="um-dropdown-hide">'.__('Отмена','ultimatemember').'</a>',
 			);
 			
 			$cancel = $items['cancel'];

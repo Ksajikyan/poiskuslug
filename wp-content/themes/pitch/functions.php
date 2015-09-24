@@ -134,6 +134,8 @@ function pitch_enqueue_scripts(){
 	wp_enqueue_style( 'pitch', get_stylesheet_uri(), array(), SITEORIGIN_THEME_VERSION );
     wp_enqueue_style( 'home_style', get_template_directory_uri() . '/css/home.css' );
     wp_enqueue_style( 'order_style', get_template_directory_uri() . '/css/order.css' );
+    wp_enqueue_style( 'order_image_gallery', get_template_directory_uri() . '/css/bootstrap-image-gallery.min.css' );
+    wp_enqueue_style( 'order_gallery', "http://blueimp.github.io/Gallery/css/blueimp-gallery.min.css" );
     /*wp_enqueue_style( 'submission_style', site_url()  . '/wp-content/plugins/user-submitted-posts/views/css/submission-main.css' );*/
     wp_enqueue_style( 'bootstrap-style', "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" );
     wp_enqueue_style( 'bootstrap-style', "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css");
@@ -146,6 +148,8 @@ function pitch_enqueue_scripts(){
 	wp_enqueue_style( 'nivo', get_template_directory_uri() . '/js/nivo/nivo-slider.css', array(), '3.2' );
     wp_enqueue_script( 'bootstrap-js', "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js", array(), '3.2' );
     wp_enqueue_script( 'bootstrap-datapicker-js', "https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.js", array(), '3.2' );
+    wp_enqueue_script( 'bootstrap-image-js', get_template_directory_uri() .'/js/bootstrap-image-gallery.min.js', array(), '3.2' );
+    wp_enqueue_script( 'bootstrap-image-min-js', "http://blueimp.github.io/Gallery/js/jquery.blueimp-gallery.min.js" );
 
 	// Flex slider
 	wp_enqueue_script( 'flexslider', get_template_directory_uri() . '/js/flexslider/jquery.flexslider.min.js', array( 'jquery' ), '1.8' );
@@ -480,8 +484,16 @@ endif;
 function home_right_widgets_init() {
 
     register_sidebar( array(
-        'name'          => 'categories',
+        'name'          => 'categories_order',
         'id'            => 'home_right_1',
+        'before_widget' => '<div>',
+        'after_widget'  => '</div>',
+        'before_title'  => '<h2 class="rounded">',
+        'after_title'   => '</h2>',
+    ) );
+    register_sidebar( array(
+        'name'          => 'categories_master',
+        'id'            => 'home_right_2',
         'before_widget' => '<div>',
         'after_widget'  => '</div>',
         'before_title'  => '<h2 class="rounded">',

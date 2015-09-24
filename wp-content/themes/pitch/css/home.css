@@ -3,12 +3,12 @@
 }
 .reg_log{
     float: right;
-    margin-right: 26px;
-    margin-top: -1%;
+    margin-right: -4px;
     font-size: 18px;
-    background-color: #BEBEF1;
+    background-color: #337AB7;
     display: none;
 }
+
 #menu-item-27{
     margin-left: 180px;
     border-left: 1px solid #E2E2E2;
@@ -245,7 +245,6 @@ div {
 #postBox #post_title {
     width:100%;
     border: 1px solid #ddd;
-1
 }
 
 #postBox #post_content {
@@ -271,4 +270,20 @@ div {
     border: 1px solid #ddd;
 }
 #postBox .post_format {
+}
+.um-member.approved.with-cover {
+    position: absolute;
+    left: 270px;
+    top: 0px;
+}
+#mainmenu-menu{
+    width: 1116px;
+    margin-left: 222px;
+}
+#order_category_ID{
+    width: 170px;
+    border: none;
+}
+#order_city_ID{
+    border: none;
 }

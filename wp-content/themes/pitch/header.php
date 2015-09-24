@@ -92,13 +92,13 @@
 		</a>
 		
 		<?php if(siteorigin_setting('general_search_input')) //get_search_form() ?>
-        <button class="your_profile">Ваш профиль</button>
+        <button class="your_profile btn btn-primary">Ваш профиль</button>
             <div class="reg_log">
-                <a class="login_link" href="<?php echo site_url();?>/account/">Редактировать профиль</a><br>
-                <a class="login_link" href="<?php echo site_url();?>/user/">Профиль</a><br>
-                <a class="registration_link" href="<?php echo site_url();?>/register/">Регистрация</a><br>
-                <a class="login_link" href="<?php echo site_url();?>/login-3/">Войти</a><br>
-                <a class="logout_link" href="<?php echo site_url();?>/logout/">Выйти</a>
+                <a class="profile_link" style="color:white;" href="<?php echo site_url();?>/account/">Редактировать профиль</a><br>
+                <a class="profile_link" style="color:white;" href="<?php echo site_url();?>/user/">Профиль</a><br>
+                <a class="profile_link" style="color:white;" href="<?php echo site_url();?>/register/">Регистрация</a><br>
+                <a class="profile_link" style="color:white;" href="<?php echo site_url();?>/login-3/">Войти</a><br>
+                <a class="profile_link" style="color:white;" href="<?php echo site_url();?>/logout/">Выйти</a>
             </div>
 	    </div>
 </div>

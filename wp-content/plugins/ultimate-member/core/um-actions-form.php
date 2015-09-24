@@ -177,58 +177,58 @@
 
 				if ( isset( $array['required'] ) && $array['required'] == 1 ) {
 					if ( !isset($args[$key]) || $args[$key] == '' ) {
-						$ultimatemember->form->add_error($key, sprintf( __('%s is required','ultimatemember'), $array['label'] ) );
+						$ultimatemember->form->add_error($key, sprintf( __('%s необходимо','ultimatemember'), $array['label'] ) );
 					}
 				}
 				
 				if ( isset( $array['max_words'] ) && $array['max_words'] > 0 ) {
 					if ( str_word_count( $args[$key] ) > $array['max_words'] ) {
-					$ultimatemember->form->add_error($key, sprintf(__('You are only allowed to enter a maximum of %s words','ultimatemember'), $array['max_words']) );
+					$ultimatemember->form->add_error($key, sprintf(__('Вы имеете право только ввести максимум %s слова','ultimatemember'), $array['max_words']) );
 					}
 				}
 				
 				if ( isset( $array['min_chars'] ) && $array['min_chars'] > 0 ) {
 					if ( $args[$key] && strlen( utf8_decode( $args[$key] ) ) < $array['min_chars'] ) {
-					$ultimatemember->form->add_error($key, sprintf(__('Your %s must contain at least %s characters','ultimatemember'), $array['label'], $array['min_chars']) );
+					$ultimatemember->form->add_error($key, sprintf(__('Ваш %s должны содержать по крайней мере %s символы','ultimatemember'), $array['label'], $array['min_chars']) );
 					}	
 				}
 				
 				if ( isset( $array['max_chars'] ) && $array['max_chars'] > 0 ) {
 					if ( $args[$key] && strlen( utf8_decode( $args[$key] ) ) > $array['max_chars'] ) {
-					$ultimatemember->form->add_error($key, sprintf(__('Your %s must contain less than %s characters','ultimatemember'), $array['label'], $array['max_chars']) );
+					$ultimatemember->form->add_error($key, sprintf(__('Ваш %s должны содержать менее %s символы','ultimatemember'), $array['label'], $array['max_chars']) );
 					}
 				}
 				
 				if ( isset( $array['html'] ) && $array['html'] == 0 ) {
 					if ( wp_strip_all_tags( $args[$key] ) != trim( $args[$key] ) ) {
-						$ultimatemember->form->add_error($key, __('You can not use HTML tags here','ultimatemember') );
+						$ultimatemember->form->add_error($key, __('Вы не можете использовать HTML-теги здесь','ultimatemember') );
 					}
 				}
 				
 				if ( isset( $array['force_good_pass'] ) && $array['force_good_pass'] == 1 ) {
 					if ( !$ultimatemember->validation->strong_pass( $args[$key] ) ) {
-					$ultimatemember->form->add_error($key, __('Your password must contain at least one lowercase letter, one capital letter and one number','ultimatemember') );
+					$ultimatemember->form->add_error($key, __('Ваш пароль должен содержать по крайней мере один строчную букву, одну заглавную букву и одну цифру','ultimatemember') );
 					}
 				}
 				
 				if ( isset( $array['force_confirm_pass'] ) && $array['force_confirm_pass'] == 1 ) {
 					if ( $args[ 'confirm_' . $key] == '' && !$ultimatemember->form->has_error($key) ) {
-					$ultimatemember->form->add_error( 'confirm_' . $key , __('Please confirm your password','ultimatemember') );
+					$ultimatemember->form->add_error( 'confirm_' . $key , __('Пожалуйста, подтвердите свой пароль','ultimatemember') );
 					}
 					if ( $args[ 'confirm_' . $key] != $args[$key] && !$ultimatemember->form->has_error($key) ) {
-					$ultimatemember->form->add_error( 'confirm_' . $key , __('Your passwords do not match','ultimatemember') );
+					$ultimatemember->form->add_error( 'confirm_' . $key , __('Ваши пароли не совпадают','ultimatemember') );
 					}
 				}
 				
 				if ( isset( $array['min_selections'] ) && $array['min_selections'] > 0 ) {
 					if ( ( !isset($args[$key]) ) || ( isset( $args[$key] ) && is_array($args[$key]) && count( $args[$key] ) < $array['min_selections'] ) ) {
-					$ultimatemember->form->add_error($key, sprintf(__('Please select at least %s choices','ultimatemember'), $array['min_selections'] ) );
+					$ultimatemember->form->add_error($key, sprintf(__('Пожалуйста, выберите хотя бы %s выбор','ultimatemember'), $array['min_selections'] ) );
 					}
 				}
 				
 				if ( isset( $array['max_selections'] ) && $array['max_selections'] > 0 ) {
 					if ( isset( $args[$key] ) && is_array($args[$key]) && count( $args[$key] ) > $array['max_selections'] ) {
-					$ultimatemember->form->add_error($key, sprintf(__('You can only select up to %s choices','ultimatemember'), $array['max_selections'] ) );
+					$ultimatemember->form->add_error($key, sprintf(__('Вы можете выбрать только до %s выбор','ultimatemember'), $array['max_selections'] ) );
 					}
 				}
 				
@@ -243,80 +243,80 @@
 							
 						case 'numeric':
 							if ( $args[$key] && !is_numeric( $args[$key] ) ) {
-								$ultimatemember->form->add_error($key, __('Please enter numbers only in this field','ultimatemember') );
+								$ultimatemember->form->add_error($key, __('Пожалуйста, введите число, только в этой области','ultimatemember') );
 							}
 							break;
 							
 						case 'phone_number':
 							if ( !$ultimatemember->validation->is_phone_number( $args[$key] ) ) {
-								$ultimatemember->form->add_error($key, __('Please enter a valid phone number','ultimatemember') );
+								$ultimatemember->form->add_error($key, __('Пожалуйста, введите действующий телефонный номер','ultimatemember') );
 							}
 							break;
 							
 						case 'youtube_url':
 							if ( !$ultimatemember->validation->is_url( $args[$key], 'youtube.com' ) ) {
-								$ultimatemember->form->add_error($key, sprintf(__('Please enter a valid %s username or profile URL','ultimatemember'), $array['label'] ) );
+								$ultimatemember->form->add_error($key, sprintf(__('Пожалуйста, введите действительный %s Имя пользователя или URL профиля','ultimatemember'), $array['label'] ) );
 							}
 							break;
 							
 						case 'soundcloud_url':
 							if ( !$ultimatemember->validation->is_url( $args[$key], 'soundcloud.com' ) ) {
-								$ultimatemember->form->add_error($key, sprintf(__('Please enter a valid %s username or profile URL','ultimatemember'), $array['label'] ) );
+								$ultimatemember->form->add_error($key, sprintf(__('Пожалуйста, введите действительный %s Имя пользователя или URL профиля','ultimatemember'), $array['label'] ) );
 							}
 							break;
 							
 						case 'facebook_url':
 							if ( !$ultimatemember->validation->is_url( $args[$key], 'facebook.com' ) ) {
-								$ultimatemember->form->add_error($key, sprintf(__('Please enter a valid %s username or profile URL','ultimatemember'), $array['label'] ) );
+								$ultimatemember->form->add_error($key, sprintf(__('Пожалуйста, введите действительный %s Имя пользователя или URL профиля','ultimatemember'), $array['label'] ) );
 							}
 							break;
 							
 						case 'twitter_url':
 							if ( !$ultimatemember->validation->is_url( $args[$key], 'twitter.com' ) ) {
-								$ultimatemember->form->add_error($key, sprintf(__('Please enter a valid %s username or profile URL','ultimatemember'), $array['label'] ) );
+								$ultimatemember->form->add_error($key, sprintf(__('Пожалуйста, введите действительный %s Имя пользователя или URL профиля','ultimatemember'), $array['label'] ) );
 							}
 							break;
 
 						case 'instagram_url':
 							if ( !$ultimatemember->validation->is_url( $args[$key], 'instagram.com' ) ) {
-								$ultimatemember->form->add_error($key, sprintf(__('Please enter a valid %s username or profile URL','ultimatemember'), $array['label'] ) );
+								$ultimatemember->form->add_error($key, sprintf(__('Пожалуйста, введите действительный %s Имя пользователя или URL профиля','ultimatemember'), $array['label'] ) );
 							}
 							break;
 							
 						case 'google_url':
 							if ( !$ultimatemember->validation->is_url( $args[$key], 'plus.google.com' ) ) {
-								$ultimatemember->form->add_error($key, sprintf(__('Please enter a valid %s username or profile URL','ultimatemember'), $array['label'] ) );
+								$ultimatemember->form->add_error($key, sprintf(__('Пожалуйста, введите действительный %s Имя пользователя или URL профиля','ultimatemember'), $array['label'] ) );
 							}
 							break;
 							
 						case 'linkedin_url':
 							if ( !$ultimatemember->validation->is_url( $args[$key], 'linkedin.com' ) ) {
-								$ultimatemember->form->add_error($key, sprintf(__('Please enter a valid %s username or profile URL','ultimatemember'), $array['label'] ) );
+								$ultimatemember->form->add_error($key, sprintf(__('Пожалуйста, введите действительный %s Имя пользователя или URL профиля','ultimatemember'), $array['label'] ) );
 							}
 							break;
 							
 						case 'url':
 							if ( !$ultimatemember->validation->is_url( $args[$key] ) ) {
-								$ultimatemember->form->add_error($key, __('Please enter a valid URL','ultimatemember') );
+								$ultimatemember->form->add_error($key, __('Пожалуйста, введите корректный адрес','ultimatemember') );
 							}
 							break;
 							
 						case 'skype':
 							if ( !$ultimatemember->validation->is_url( $args[$key], 'skype.com' ) ) {
-								$ultimatemember->form->add_error($key, sprintf(__('Please enter a valid %s username or profile URL','ultimatemember'), $array['label'] ) );
+								$ultimatemember->form->add_error($key, sprintf(__('Пожалуйста, введите действительный %s Имя пользователя или URL профиля','ultimatemember'), $array['label'] ) );
 							}
 							break;
 							
 						case 'unique_username':
 							
 							if ( $args[$key] == '' ) {
-								$ultimatemember->form->add_error($key, __('You must provide a username','ultimatemember') );
+								$ultimatemember->form->add_error($key, __('Вы должны предоставить имя пользователя','ultimatemember') );
 							} else if ( $mode == 'register' && username_exists( sanitize_user( $args[$key] ) ) ) {
-								$ultimatemember->form->add_error($key, __('Your username is already taken','ultimatemember') );
+								$ultimatemember->form->add_error($key, __('Ваше имя пользователя уже занято','ultimatemember') );
 							} else if ( is_email( $args[$key] ) ) {
-								$ultimatemember->form->add_error($key, __('Username cannot be an email','ultimatemember') );
+								$ultimatemember->form->add_error($key, __('Имя пользователя не может быть по электронной почте','ultimatemember') );
 							} else if ( !$ultimatemember->validation->safe_username( $args[$key] ) ) {
-								$ultimatemember->form->add_error($key, __('Your username contains invalid characters','ultimatemember') );
+								$ultimatemember->form->add_error($key, __('Ваше имя пользователя содержит недопустимые символы','ultimatemember') );
 							}
 							
 							break;
@@ -324,13 +324,13 @@
 						case 'unique_username_or_email':
 							
 							if ( $args[$key] == '' ) {
-								$ultimatemember->form->add_error($key,  __('You must provide a username','ultimatemember') );
+								$ultimatemember->form->add_error($key,  __('Вы должны предоставить имя пользователя','ultimatemember') );
 							} else if ( $mode == 'register' && username_exists( sanitize_user( $args[$key] ) ) ) {
-								$ultimatemember->form->add_error($key, __('Your username is already taken','ultimatemember') );
+								$ultimatemember->form->add_error($key, __('Ваше имя пользователя уже занято','ultimatemember') );
 							} else if ( $mode == 'register' && email_exists( $args[$key] ) ) {
-								$ultimatemember->form->add_error($key,  __('This email is already linked to an existing account','ultimatemember') );
+								$ultimatemember->form->add_error($key,  __('Имя пользователя не может быть по электронной почтеt','ultimatemember') );
 							} else if ( !$ultimatemember->validation->safe_username( $args[$key] ) ) {
-								$ultimatemember->form->add_error($key,  __('Your username contains invalid characters','ultimatemember') );
+								$ultimatemember->form->add_error($key,  __('Ваше имя пользователя содержит недопустимые символы','ultimatemember') );
 							}
 							
 							break;
@@ -340,21 +340,21 @@
 							if ( in_array( $key, array('user_email') ) ) {
 								
 								if ( $args[$key] == '' && in_array( $key, array('user_email') ) ) {
-									$ultimatemember->form->add_error($key, __('You must provide your email','ultimatemember') );
+									$ultimatemember->form->add_error($key, __('Вы должны предоставить вашу электронную почту','ultimatemember') );
 								} else if ( $mode == 'register' && email_exists( $args[$key] ) ) {
-									$ultimatemember->form->add_error($key, __('This email is already linked to an existing account','ultimatemember') );
+									$ultimatemember->form->add_error($key, __('Этот адрес уже связан с существующим аккаунтом','ultimatemember') );
 								} else if ( !is_email( $args[$key] ) ) {
-									$ultimatemember->form->add_error($key, __('This is not a valid email','ultimatemember') );
+									$ultimatemember->form->add_error($key, __('Это не действительный адрес электронной почты','ultimatemember') );
 								} else if ( !$ultimatemember->validation->safe_username( $args[$key] ) ) {
-									$ultimatemember->form->add_error($key,  __('Your email contains invalid characters','ultimatemember') );
+									$ultimatemember->form->add_error($key,  __('Ваш адрес электронной почты содержит недопустимые символы','ultimatemember') );
 								}
 							
 							} else {
 							
 								if ( $args[$key] != '' && !is_email($args[$key]) ) {
-									$ultimatemember->form->add_error($key, __('This is not a valid email','ultimatemember') );
+									$ultimatemember->form->add_error($key, __('Это не действительный адрес электронной почты','ultimatemember') );
 								} else if ( $args[$key] != '' && email_exists( $args[$key] ) ) {
-									$ultimatemember->form->add_error($key, __('This email is already linked to an existing account','ultimatemember') );
+									$ultimatemember->form->add_error($key, __('Этот адрес уже связан с существующим аккаунтом','ultimatemember') );
 								}
 								
 							}
@@ -370,7 +370,7 @@
 			if ( isset( $args['description'] ) ) {
 				$max_chars = um_get_option('profile_bio_maxchars');
 				if ( strlen( utf8_decode( $args['description'] ) ) > $max_chars && $max_chars ) {
-					$ultimatemember->form->add_error('description', sprintf(__('Your user description must contain less than %s characters','ultimatemember'), $max_chars ) );
+					$ultimatemember->form->add_error('description', sprintf(__('Ваше описание пользователя должен содержать меньше %s символы','ultimatemember'), $max_chars ) );
 				}
 			}
 		

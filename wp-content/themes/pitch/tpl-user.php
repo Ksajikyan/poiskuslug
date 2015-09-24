@@ -31,7 +31,11 @@ $user_ID = get_current_user_id();
                 ?>
             </div>
 
-
+<?php //if ( is_active_sidebar( 'home_right_2' ) ) : ?>
+<!--    <div id="primary-sidebar" class="primary-sidebar widget-area order_sidebar" role="complementary">-->
+<!--        --><?php //dynamic_sidebar( 'home_right_1' ); ?>
+<!--    </div><!-- #primary-sidebar-->
+<?php //endif; ?>
 
             <div class="clear"></div>
         </div>
