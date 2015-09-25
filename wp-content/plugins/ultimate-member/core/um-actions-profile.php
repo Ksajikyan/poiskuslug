@@ -619,7 +619,7 @@
 		<div class="um-profile-nav">
 		
 			<?php foreach( $tabs as $id => $tab ) {
-				
+
 				if ( isset( $tab['hidden'] ) ) continue;
 				
 				$nav_link = $ultimatemember->permalinks->get_current_url( get_option('permalink_structure') );
@@ -637,16 +637,28 @@
 					<i class="<?php echo $tab['icon']; ?>"></i>
 					
 					<?php if ( isset( $tab['notifier'] ) && $tab['notifier'] > 0 ) { ?>
-					<span class="um-tab-notifier uimob500-show uimob340-show uimob800-show"><?php echo $tab['notifier']; ?></span>
-					<?php } ?>
+					<span class="um-tab-notifier uimob500-show uimob340-show uimob800-show"><?php echo ($id=='posts'?'Рaботы':'О вас') ?></span>
+					<?php } $url = $_SERVER['REQUEST_URI'];
+                    $data = parse_url($url);
+                    $number = basename($data['path'], '.html');
+                    $user_ID = get_current_user_id(); ?>
 					
-					<span class="uimob500-hide uimob340-hide uimob800-hide title"><?php echo $tab['name']; ?></span>
-					
+					<span class="uimob500-hide uimob340-hide uimob800-hide title"><?php echo ($id=='posts'?'Рaботы':'О вас') ?></span>
+
 				</a>
-			</div>
+
+            </div>
 			
 			<?php } ?>
-			
+            <?php $url = $_SERVER['REQUEST_URI'];
+                  $data = parse_url($url);
+                  $number = basename($data['path'], '.html');
+                  $user_ID = get_current_user_id();
+            if($user_ID == $number){?>
+                <div class="um-profile-nav-item um-profile-nav-add <?php if ( !um_get_option('profile_menu_icons') ) { echo 'without-icon'; } ?>">
+                    <a><i class="um-faicon-pencil"></i><span class="uimob500-hide uimob340-hide uimob800-hide title add_post">Добавить работу</span></a>
+            </div>
+            <?php } ?>
 			<div class="um-clear"></div>
 			
 		</div>

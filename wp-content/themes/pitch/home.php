@@ -26,10 +26,9 @@ $args_city = array(
     'order'              => 'ASC',
     'style'              => 'list',
     'show_count'         => 0,
-    'hide_empty'         => 1,
+    'hide_empty'         => 0,
     'use_desc_for_title' => 1,
     'child_of'           => 15,
-//    'child_of'           => 9,
     'name'               =>'order_city_ID',
     'feed'               => '',
     'feed_type'          => '',
@@ -37,7 +36,7 @@ $args_city = array(
     'exclude'            => '',
     'exclude_tree'       => '',
     'include'            => '',
-    'hierarchical'       => 2,
+    'hierarchical'       => 3,
     'title_li'           => __( 'Categories' ),
     'show_option_none'   => __( '' ),
     'number'             => null,
@@ -54,7 +53,7 @@ $args_order_category = array(
     'order'              => 'ASC',
     'style'              => 'list',
     'show_count'         => 0,
-    'hide_empty'         => 1,
+    'hide_empty'         => 0,
     'use_desc_for_title' => 1,
     'child_of'           => 18,
     'name'               =>'order_category_ID',
@@ -152,16 +151,16 @@ $args_order_category = array(
     <form class="form-inline" method="POST" action="<?php echo site_url();?>/order-3/">
         <div class="form-group">
             <ul class="form-control"><?php wp_dropdown_categories( $args_order_category ); ?></ul>
-<!--            <input type="hidden" name="order_category_parent_ID" value="--><?php //echo get_category_parents( wp_dropdown_categories( $args_order_category ), true, ' &raquo; ' );?><!--"></input>-->
+
         </div>
         <div class="form-group">
 
-<!--            <input name="city" type="text" class="form-control city" id="exampleInputEmail2">-->
+
 
            <ul class="form-control"><?php wp_dropdown_categories( $args_city ); ?></ul>
-<!--            <input type="hidden" name="order_category_city_parent_ID" value="--><?php //echo get_category_parents( wp_dropdown_categories( $args_city ), true, ' &raquo; ' );?><!--"></input>-->
+
         </div>
-        <button type="submit" class="btn btn-default add_order">Добавить заказ</button>
+        <button type="submit" class="btn btn-primary add_order">Добавить заказ</button>
     </form>
     </div>
     </div>

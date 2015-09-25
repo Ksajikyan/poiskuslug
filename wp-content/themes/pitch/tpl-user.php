@@ -19,11 +19,6 @@ $user_ID = get_current_user_id();
                 <?php while ( have_posts() ) : the_post(); ?>
                     <div class="entry-content">
                         <?php echo the_content(); ?>
-                        <?php
-                        if($user_ID == $number){
-                            echo '<button class="add_post"> Добавить работу </button>';
-                        }
-                        ?>
                     </div>
                 <?php
                 endwhile; //resetting the page loop

@@ -34,6 +34,7 @@
     </div>
 	<div id="loop" class="loop-posts customer-loop">
 		<?php while(have_posts()) : the_post(); ?>
+        <div class="row order_block">
 			<div id="post-<?php the_ID() ?>" <?php post_class() ?>>
 				<div class="post-info customer-posts">
 					<div class="date">
@@ -42,9 +43,6 @@
 					</div>
 					
 					<div class="extras">
-						<div class="categories">
-							<?php the_category(', ') ?>
-						</div>
 						<div class="comment-count">
 							<?php
 								$comments = get_comment_count(get_the_ID());
@@ -53,28 +51,42 @@
 								}
 							?>
 						</div>
-						<div class="customer_info">
-<!--							--><?php //printf(__('By %s', 'pitch'), get_the_author_link()) ?>
-<!--                        --><?php //echo (get_post_meta(get_the_ID(), 'wp_custom_attachment', true));
-//                        echo  (get_post_meta( get_the_ID(), 'order_user_name', true ));
-//                        echo(get_post_meta( get_the_ID(), 'order_user_email', true ));
-//                        echo(get_post_meta( get_the_ID(), 'order_user_tel', true ));
-//                        echo(get_post_meta( get_the_ID(), 'order_start_day', true ));
-//                        echo(get_post_meta( get_the_ID(), 'order_location', true )); ?>
-                            <!--							--><?php //printf(__('By %s', 'pitch'), get_the_author_link()) ?>
-                            <?php echo (get_post_meta(get_the_ID(), 'wp_custom_attachment', true)); ?>
-                            <br><div class="customer_name">имя заказчика -  <?php echo  (get_post_meta( get_the_ID(), 'order_user_name', true )); ?> </div><br>
-                            <?php //echo(get_post_meta( get_the_ID(), 'order_user_email', true ));
-                            // echo(get_post_meta( get_the_ID(), 'order_user_tel', true )); ?>
-                            <br><br><div class="customer_start_day"> когда начать работу -  <?php echo(get_post_meta( get_the_ID(), 'order_start_day', true )); ?> </div>
-                            <div class="order_location"> место работы -  <?php echo(get_post_meta( get_the_ID(), 'order_location', true )); ?> </div>
+                        <?php $url = $_SERVER['REQUEST_URI'];
 
-						</div>
-					</div>
+                        if(preg_match('/board/', $url)){
+                            $order_user_name =    (get_post_meta( get_the_ID(), 'order_user_name', true ));
+                            $order_start_day = (get_post_meta( get_the_ID(), 'order_start_day', true ));
+                            $order_location = (get_post_meta( get_the_ID(), 'order_location', true ));
+                            echo "<address class='order_info'>
+                                   <strong>$order_user_name</strong><br>
+                                   когда начать работу - $order_start_day<br>
+                                   место работы - $order_location<br>
+                                   </address>";
+                            ?>
+                            <div class="categories">
+                                <?php the_category(', ') ?>
+                            </div>
+                        <?php
+                        echo "<div class='clearfix'></div><div class='order_image_1'>";
+                if(get_post_meta( get_the_ID(), 'order_image0', true )!='') {
+                            echo '<a href="'.site_url().'/wp-content/uploads/'.get_post_meta(get_the_ID(), 'order_image0', true).'" title="'.get_post_meta(get_the_ID(), 'order_image0', true).'" data-gallery><img class="image_1 img-rounded" src="' . site_url() . '/wp-content/uploads/' . get_post_meta(get_the_ID(), 'order_image0', true) . '"></a>';
+                        }
+                if(get_post_meta( get_the_ID(), 'order_image1', true )!='') {
+                    echo '<a href="'.site_url().'/wp-content/uploads/'.get_post_meta(get_the_ID(), 'order_image1', true).'" title="'.get_post_meta(get_the_ID(), 'order_image1', true).'" data-gallery><img class="image_1 img-rounded" src="' . site_url() . '/wp-content/uploads/' . get_post_meta(get_the_ID(), 'order_image1', true) . '"></a>';
+                }
+                if(get_post_meta( get_the_ID(), 'order_image2', true )!='') {
+                    echo '<a href="'.site_url().'/wp-content/uploads/'.get_post_meta(get_the_ID(), 'order_image2', true).'" title="'.get_post_meta(get_the_ID(), 'order_image2', true).'" data-gallery><img class="image_1 img-rounded" src="' . site_url() . '/wp-content/uploads/' . get_post_meta(get_the_ID(), 'order_image2', true) . '"></a>';
+                }
+                ?>
+
+
+                 <?php echo "</div>"; }?>
+				</div>
 				</div>
 				<div class="post-main customer-post-main">
+                    <div class="master_post_image" >
 					<a href="<?php the_permalink() ?>"><?php echo get_the_post_thumbnail() ?></a>
-					
+                </div>
 					<h2 class="post-title"><a href="<?php the_permalink() ?>"><?php the_title() ?></a></h2>
 					
 					<div class="excerpt content">
@@ -89,23 +101,8 @@
 					</div>
 				</div>
 
-
 <!--				<div class="clear"></div>-->
 			</div>
-            <div class="row">
-            <div class="order_image_1">
-                <?php if(get_post_meta( get_the_ID(), 'order_image0', true )!='') {
-                    echo '<a href="'.site_url().'/wp-content/uploads/'.get_post_meta(get_the_ID(), 'order_image0', true).'" title="'.get_post_meta(get_the_ID(), 'order_image0', true).'" data-gallery><img class="image_1 img-rounded" src="' . site_url() . '/wp-content/uploads/' . get_post_meta(get_the_ID(), 'order_image0', true) . '"></a>';
-                }
-                if(get_post_meta( get_the_ID(), 'order_image1', true )!='') {
-                    echo '<a href="'.site_url().'/wp-content/uploads/'.get_post_meta(get_the_ID(), 'order_image1', true).'" title="'.get_post_meta(get_the_ID(), 'order_image1', true).'" data-gallery><img class="image_1 img-rounded" src="' . site_url() . '/wp-content/uploads/' . get_post_meta(get_the_ID(), 'order_image1', true) . '"></a>';
-                }
-                if(get_post_meta( get_the_ID(), 'order_image2', true )!='') {
-                    echo '<a href="'.site_url().'/wp-content/uploads/'.get_post_meta(get_the_ID(), 'order_image2', true).'" title="'.get_post_meta(get_the_ID(), 'order_image2', true).'" data-gallery><img class="image_1 img-rounded" src="' . site_url() . '/wp-content/uploads/' . get_post_meta(get_the_ID(), 'order_image2', true) . '"></a>';
-                }
-                ?>
-
-            </div>
             </div>
 		<?php endwhile; ?>
 
@@ -115,26 +112,30 @@
 			<?php if($GLOBALS['wp_query']->max_num_pages > 1) : ?><div class="clear"></div><div class="separator"></div><?php endif ?>
 		</div>
 	</div>
-<?php if ( is_active_sidebar( 'home_right_1' ) ) : ?>
+
+<?php $url = $_SERVER['REQUEST_URI'];
+if(preg_match('/board/', $url)){
+if ( is_active_sidebar( 'home_right_1' ) ) : ?>
     <div id="primary-sidebar" class="primary-sidebar widget-area order_sidebar" role="complementary">
         <?php dynamic_sidebar( 'home_right_1' ); ?>
     </div><!-- #primary-sidebar
 <?php endif; ?>
     </div>
 
-<?php endif ?>
+<?php }
+else{
+if ( is_active_sidebar( 'home_right_2' ) ) : ?>
+    <div id="primary-sidebar" class="primary-sidebar widget-area order_sidebar" role="complementary">
+        <?php dynamic_sidebar( 'home_right_2' ); ?>
+    </div><!-- #primary-sidebar
+<?php endif;
+}
+endif
+?>
 
 
 <?php if(get_the_author()==get_current_user_id()){
 
 }
 ?>
-<!--<div class="order_sidebar">-->
-<!--    --><?php //dynamic_sidebar( 'home_right_1' ); ?>
-<!--</div>-->
-<?php //if ( is_active_sidebar( 'home_right_1' ) ) : ?>
-<!--<div id="primary-sidebar" class="primary-sidebar widget-area" role="complementary">-->
-<!--    --><?php //dynamic_sidebar( 'home_right_1' ); ?>
-<!--</div><!-- #primary-sidebar-->
-<?php //endif; ?>
 

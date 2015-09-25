@@ -67,7 +67,6 @@
     margin-top: 8px;
 }
 .add_order{
-    background: #ff6c02 !important;
     color: #fff !important;
     height: 38px !important;
 }
@@ -286,4 +285,13 @@ div {
 }
 #order_city_ID{
     border: none;
+}
+.attachment-post-thumbnail{
+    width: 100px;
+    height: 100px;
+
+}
+#primary-sidebar h2{
+    font-size: 25px!important;
+    font-weight: 600;
 }

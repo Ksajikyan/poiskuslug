@@ -135,6 +135,7 @@ function pitch_enqueue_scripts(){
     wp_enqueue_style( 'home_style', get_template_directory_uri() . '/css/home.css' );
     wp_enqueue_style( 'order_style', get_template_directory_uri() . '/css/order.css' );
     wp_enqueue_style( 'order_image_gallery', get_template_directory_uri() . '/css/bootstrap-image-gallery.min.css' );
+    wp_enqueue_style( 'pgwslideshow_image_gallery', get_template_directory_uri() . '/css/pgwslideshow.min.css' );
     wp_enqueue_style( 'order_gallery', "http://blueimp.github.io/Gallery/css/blueimp-gallery.min.css" );
     /*wp_enqueue_style( 'submission_style', site_url()  . '/wp-content/plugins/user-submitted-posts/views/css/submission-main.css' );*/
     wp_enqueue_style( 'bootstrap-style', "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" );
@@ -150,6 +151,7 @@ function pitch_enqueue_scripts(){
     wp_enqueue_script( 'bootstrap-datapicker-js', "https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.js", array(), '3.2' );
     wp_enqueue_script( 'bootstrap-image-js', get_template_directory_uri() .'/js/bootstrap-image-gallery.min.js', array(), '3.2' );
     wp_enqueue_script( 'bootstrap-image-min-js', "http://blueimp.github.io/Gallery/js/jquery.blueimp-gallery.min.js" );
+    wp_enqueue_script( 'pgwslideshow-min-js', "http://blueimp.github.io/Gallery/js/pgwslideshow.min.js" );
 
 	// Flex slider
 	wp_enqueue_script( 'flexslider', get_template_directory_uri() . '/js/flexslider/jquery.flexslider.min.js', array( 'jquery' ), '1.8' );
@@ -488,16 +490,16 @@ function home_right_widgets_init() {
         'id'            => 'home_right_1',
         'before_widget' => '<div>',
         'after_widget'  => '</div>',
-        'before_title'  => '<h2 class="rounded">',
-        'after_title'   => '</h2>',
+        'before_title'  => '',
+        'after_title'   => '',
     ) );
     register_sidebar( array(
         'name'          => 'categories_master',
         'id'            => 'home_right_2',
         'before_widget' => '<div>',
         'after_widget'  => '</div>',
-        'before_title'  => '<h2 class="rounded">',
-        'after_title'   => '</h2>',
+        'before_title'  => '',
+        'after_title'   => '',
     ) );
 
 
@@ -564,6 +566,83 @@ function get_all_thumbnails() {
         }
     }
     if ($i != 0) echo '<div style="clear: both;"><small>' . $i . ' pictures</small></div>';
+
+}
+add_action( 'init', 'create_post_type_order' );
+function create_post_type_order() {
+    register_post_type( 'order',
+        array(
+            'labels' => array(
+                'name' => __( 'Orders' ),
+                'singular_name' => __( 'Orders' )
+            ),
+            'taxonomies' => array('category'),
+            'pending' => true,
+            'has_archive' => true,
+        )
+    );
+}
+add_action( 'init', 'create_post_type_master' );
+function create_post_type_master() {
+    register_post_type( 'master',
+        array(
+            'labels' => array(
+                'name' => __( 'Master' ),
+                'singular_name' => __( 'Master' )
+            ),
+            'taxonomies' => array('category'),
+            'pending' => true,
+            'has_archive' => true,
+        )
+    );
+}
+////// master manu page
+add_action( 'admin_menu', 'register_master_menu_page' );
+
+function register_master_menu_page(){
+    add_menu_page( 'Maters', 'Master', 'manage_options', 'masters', 'master_menu_page', '', 7);
+}
+
+function master_menu_page(){
+    $location = site_url().'/wp-admin/edit.php?post_type=master';
+    wp_redirect( $location );
+}
+/////// order manu page
+add_action( 'admin_menu', 'register_order_menu_page' );
+
+function register_order_menu_page(){
+    add_menu_page( 'Orders', 'Orders', 'manage_options', 'orders', 'order_menu_page', '', 6 );
+}
+
+function order_menu_page(){
+    $location = site_url().'/wp-admin/edit.php?post_type=order';
+    wp_redirect( $location );
+}
+add_filter ( 'publish_order', 'email_me' );
+function email_me(){
+    global $wpdb;
+    $postid = get_the_ID();
+    $categoriesID = wp_get_post_categories($postid);
+    $categoryCity = get_the_category_by_ID($categoriesID[0]);
+    $categoryDesc = get_the_category_by_ID($categoriesID[4]);
+
+    $resultCity = (array)$wpdb->get_results( "SELECT user_email, wp_posts.post_content, wp_posts.post_title, wp_posts.ID
+                                        FROM wp_users
+                                        JOIN wp_posts on wp_posts.post_author = wp_users.ID
+                                        JOIN wp_term_relationships on wp_term_relationships.object_id = wp_posts.ID
+                                        JOIN wp_term_taxonomy on wp_term_taxonomy.term_taxonomy_id = wp_term_relationships.term_taxonomy_id
+                                        JOIN wp_terms on wp_terms.term_id = wp_term_taxonomy.term_id
+                                        WHERE wp_posts.post_type='master' and wp_posts.post_status='publish' and wp_terms.name = '$categoryCity'", ARRAY_N);
+
+    $resultDesc = (array)$wpdb->get_results( "SELECT user_email, wp_posts.post_content, wp_posts.post_title, wp_posts.ID
+                                        FROM wp_users
+                                        JOIN wp_posts on wp_posts.post_author = wp_users.ID
+                                        JOIN wp_term_relationships on wp_term_relationships.object_id = wp_posts.ID
+                                        JOIN wp_term_taxonomy on wp_term_taxonomy.term_taxonomy_id = wp_term_relationships.term_taxonomy_id
+                                        JOIN wp_terms on wp_terms.term_id = wp_term_taxonomy.term_id
+                                        WHERE wp_posts.post_type='master' and wp_posts.post_status='publish' and wp_terms.name = '$categoryDesc'", ARRAY_N);
+    $result = array_merge($resultCity,$resultDesc);
+    var_dump($result); exit;
 
 }
 

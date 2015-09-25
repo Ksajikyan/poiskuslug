@@ -95,15 +95,16 @@ html, body {
     margin-left: 435px;
 }
 .customer_name{
-    margin-right: 195px;
+    margin-right: 237px;
     float: left;
 }
 .customer_start_day{
-    margin-top: -23px;
+    margin-top: -10px;
     float: left;
+    margin-right: 383px;
 }
 .order_location{
-    margin-top: -9px;
+    margin-top: -1px;
     float: left;
 }
 .customer-post-main{
@@ -118,5 +119,37 @@ html, body {
 }
 .order_image_1{
     float: left;
-    margin-left: 15px;
+    margin-left: -5px;
+}
+.order_image_1 a{
+    margin-right: 5px;
+}
+.order_info{
+    margin-bottom: 0;
+    text-align: left;
+}
+#loop.loop-posts .post-info .date{
+    margin-bottom: 0;
+}
+.order_block{
+    padding: 10px;
+    border: 1px solid rgba(147, 159, 236, 0.55);
+    border-radius: 5px;
+    margin-bottom: 10px !important;
+    margin-left: 0 !important;
+}
+
+.um-profile-nav-add{
+    float: left;
+    cursor: pointer;
+    color: #FFFFFF;
+    font-weight: 600;
+    font-size: 14px;
+    border-radius: 4px;
+}
+.um-profile-nav-add:hover{
+    background: #555;
+}
+#toplevel_page_orders{
+
 }
