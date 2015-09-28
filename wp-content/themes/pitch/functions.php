@@ -618,33 +618,55 @@ function order_menu_page(){
     $location = site_url().'/wp-admin/edit.php?post_type=order';
     wp_redirect( $location );
 }
-add_filter ( 'publish_order', 'email_me' );
-function email_me(){
+add_filter ( 'publish_post', 'check_post' );
+function check_post()
+{
     global $wpdb;
     $postid = get_the_ID();
     $categoriesID = wp_get_post_categories($postid);
-    $categoryCity = get_the_category_by_ID($categoriesID[0]);
-    $categoryDesc = get_the_category_by_ID($categoriesID[4]);
 
-    $resultCity = (array)$wpdb->get_results( "SELECT user_email, wp_posts.post_content, wp_posts.post_title, wp_posts.ID
-                                        FROM wp_users
-                                        JOIN wp_posts on wp_posts.post_author = wp_users.ID
-                                        JOIN wp_term_relationships on wp_term_relationships.object_id = wp_posts.ID
-                                        JOIN wp_term_taxonomy on wp_term_taxonomy.term_taxonomy_id = wp_term_relationships.term_taxonomy_id
-                                        JOIN wp_terms on wp_terms.term_id = wp_term_taxonomy.term_id
-                                        WHERE wp_posts.post_type='master' and wp_posts.post_status='publish' and wp_terms.name = '$categoryCity'", ARRAY_N);
+    if ($categoriesID[0] == 9) {
+        $categoryDesc = get_the_category_by_ID($categoriesID[count($categoriesID)-2]);
+        $categoryCity = get_the_category_by_ID($categoriesID[count($categoriesID)-1]);
 
-    $resultDesc = (array)$wpdb->get_results( "SELECT user_email, wp_posts.post_content, wp_posts.post_title, wp_posts.ID
-                                        FROM wp_users
-                                        JOIN wp_posts on wp_posts.post_author = wp_users.ID
-                                        JOIN wp_term_relationships on wp_term_relationships.object_id = wp_posts.ID
-                                        JOIN wp_term_taxonomy on wp_term_taxonomy.term_taxonomy_id = wp_term_relationships.term_taxonomy_id
-                                        JOIN wp_terms on wp_terms.term_id = wp_term_taxonomy.term_id
-                                        WHERE wp_posts.post_type='master' and wp_posts.post_status='publish' and wp_terms.name = '$categoryDesc'", ARRAY_N);
-    $result = array_merge($resultCity,$resultDesc);
-    var_dump($result); exit;
+        $mastersId = $wpdb->get_results( "SELECT wp_posts.ID
+                                          FROM wp_users
+                                          JOIN wp_posts on wp_posts.post_author = wp_users.ID
+                                          JOIN wp_term_relationships on wp_term_relationships.object_id = wp_posts.ID
+                                          JOIN wp_term_taxonomy on wp_term_taxonomy.term_taxonomy_id = wp_term_relationships.term_taxonomy_id
+                                          JOIN wp_terms on wp_terms.term_id = wp_term_taxonomy.term_id
+                                          WHERE wp_posts.post_status='publish' and wp_terms.name='мастера' GROUP BY wp_posts.ID", ARRAY_N);
+
+
+
+        if(!empty($mastersId)){
+            foreach($mastersId as $mID){
+                $masters[] = $wpdb->get_results( "SELECT wp_posts.ID, user_email, wp_posts.post_content, wp_posts.post_title, wp_terms.name
+                                                FROM wp_users
+                                                JOIN wp_posts on wp_posts.post_author = wp_users.ID
+                                                JOIN wp_term_relationships on wp_term_relationships.object_id = wp_posts.ID
+                                                JOIN wp_term_taxonomy on wp_term_taxonomy.term_taxonomy_id = wp_term_relationships.term_taxonomy_id
+                                                JOIN wp_terms on wp_terms.term_id = wp_term_taxonomy.term_id
+                                                WHERE wp_posts.ID = '$mID[0]'", ARRAY_A);
+            }
+        }
+
+        $resavers = array();
+        if(!empty($masters)) {
+            foreach ($masters as $key=>$master) {
+                //var_dump($master[$key+1]['name'], $categoryCity);
+                if($master[1]['name']==$categoryCity && $master[2]['name']==$categoryDesc){
+                    array_push($resavers, $master[0]['user_email'], $master[0]['post_title'], $master[0]['post_content']);
+                    break;
+                }
+            }
+        }
+
+
+    }
 
 }
+
 
 
 

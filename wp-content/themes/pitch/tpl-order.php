@@ -188,7 +188,7 @@ if (isset($_POST['order_title']) && !empty($_POST['order_title']) && isset($_POS
         'post_name'         =>  '',
         'post_status' => 'pending',
         'post_title' => $order_title,
-        'post_type' => 'order',
+        'post_type' => 'post',
 
         //'post_thumbnail' => site_url().'/wp-content/uploads/'.$order_image,
 

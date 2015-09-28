@@ -3,7 +3,14 @@
 Template Name: Member
 */
 
-get_header(); ?>
+get_header();
+
+global $wpdb;
+$user_count = $wpdb->get_var( "SELECT COUNT(*) FROM $wpdb->users" );
+
+echo '<h3 class="count_master"> У нас '.($user_count -1).' проверенный мастеров  </h3>';
+
+?>
 
     <div id="post-single">
         <div class="container">

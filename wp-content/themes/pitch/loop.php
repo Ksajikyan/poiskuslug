@@ -1,4 +1,7 @@
-<?php if(have_posts()) :  ?>
+<?php
+
+
+if(have_posts()) :  ?>
     <div id="blueimp-gallery" class="blueimp-gallery">
         <!-- The container for the modal slides -->
         <div class="slides"></div>
@@ -32,6 +35,14 @@
             </div>
         </div>
     </div>
+<?php
+$url = $_SERVER['REQUEST_URI'];
+
+if(preg_match('/board/', $url)) {
+    $post_count = $wpdb->get_var("SELECT COUNT(*) FROM $wpdb->term_relationships WHERE term_taxonomy_id=9;");
+    echo '<h3 class="count_order"> У нас ' . $post_count .' активных заявок </h3>';
+}
+?>
 	<div id="loop" class="loop-posts customer-loop">
 		<?php while(have_posts()) : the_post(); ?>
         <div class="row order_block">
@@ -54,6 +65,9 @@
                         <?php $url = $_SERVER['REQUEST_URI'];
 
                         if(preg_match('/board/', $url)){
+
+$post_count = $wpdb->get_var("SELECT COUNT(*) FROM $wpdb->term_relationships WHERE term_taxonomy_id=9;");
+ echo 'post count is ' . $post_count;
                             $order_user_name =    (get_post_meta( get_the_ID(), 'order_user_name', true ));
                             $order_start_day = (get_post_meta( get_the_ID(), 'order_start_day', true ));
                             $order_location = (get_post_meta( get_the_ID(), 'order_location', true ));
@@ -137,5 +151,13 @@ endif
 <?php if(get_the_author()==get_current_user_id()){
 
 }
+$args = array( 'post_type' => 'order', 'posts_per_page' => 10 );
+$loop = new WP_Query( $args );
+while ( $loop->have_posts() ) : $loop->the_post();
+    the_title();
+    echo '<div class="entry-content">';
+    the_content();
+    echo '</div>';
+endwhile;
 ?>
 

@@ -146,6 +146,7 @@ $args_order_category = array(
 
 
 <div id="content">
+    <div class="home_text"> Перестаньте искать исполнителей пусть они найдут вас. <br> оставьте заявку на нашем сайте и получите до 6 разных предложены от 6 разных компании выберете наиболее подходящего исполнителя и начните работу </div>
 <div class="add-order-block" style="text-shadow: none;">
 <div class="inner-content">
     <form class="form-inline" method="POST" action="<?php echo site_url();?>/order-3/">

@@ -295,3 +295,14 @@ div {
     font-size: 25px!important;
     font-weight: 600;
 }
+.count_master{
+    margin-left: 456px !important;
+    font-family: "Helvetica Neue", Arial, Helvetica, "Nimbus Sans L", sans-serif;
+}
+.count_order{
+    margin-left: 240px !important;
+    font-family: "Helvetica Neue", Arial, Helvetica, "Nimbus Sans L", sans-serif;
+}
+.postform{
+    width: 180px;postform
+}
