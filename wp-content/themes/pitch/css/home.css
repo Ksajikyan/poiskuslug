@@ -226,8 +226,9 @@ div {
 
 }
 .your_profile{
-    margin-left: 702px;
-    width: 145px;
+    margin-left: 965px;
+    margin-top: -68px;
+}
 }
 .form-inline{
     margin-left: 85px;
@@ -280,11 +281,14 @@ div {
     margin-left: 222px;
 }
 #order_category_ID{
-    width: 170px;
+    width: 270px;
     border: none;
+    margin-top: -10px;
 }
 #order_city_ID{
+    width: 270px;
     border: none;
+    margin-top: -10px;
 }
 .attachment-post-thumbnail{
     width: 100px;
@@ -304,5 +308,44 @@ div {
     font-family: "Helvetica Neue", Arial, Helvetica, "Nimbus Sans L", sans-serif;
 }
 .postform{
-    width: 180px;postform
+    width: 180px;
+}
+.home_text{
+    color: white;
+    margin-left: 300px;
+    padding-top: 141px;
+}
+.search_cat_sub{
+    float: left;
+    margin-left: 214px;
+    margin-top: -34px;
+}
+.search_cat{
+    height: 34px;
+    width: 206px;
+    border-radius: 4px;
+    border-color: rgb(51, 122, 183);
+
+}
+.um-member-cover{
+    background-color: rgb(128, 184, 233) !important;
+}
+.um-cover-e{
+    background-color: rgb(51, 122, 183) !important;
+}
+.dropdown-menu{
+    margin-left: 837px !important;
+    margin-top: -67px!important;
+}
+.form-inline{
+    margin-left: 115px!important;
+}
+.um-search-submit{
+    width: 185px;
+    margin-left: 393px;
+    margin-top: -55px;
+}
+.um-search-submit a:nth-child(3) {
+    left: 210px!important;
+    top: -57px!important;
 }

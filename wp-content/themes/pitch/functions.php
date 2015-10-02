@@ -136,6 +136,7 @@ function pitch_enqueue_scripts(){
     wp_enqueue_style( 'order_style', get_template_directory_uri() . '/css/order.css' );
     wp_enqueue_style( 'order_image_gallery', get_template_directory_uri() . '/css/bootstrap-image-gallery.min.css' );
     wp_enqueue_style( 'pgwslideshow_image_gallery', get_template_directory_uri() . '/css/pgwslideshow.min.css' );
+    wp_enqueue_style( 'pgwslideshow_image_gallery', get_template_directory_uri() . '/css/bootstrap-select.min.css' );
     wp_enqueue_style( 'order_gallery', "http://blueimp.github.io/Gallery/css/blueimp-gallery.min.css" );
     /*wp_enqueue_style( 'submission_style', site_url()  . '/wp-content/plugins/user-submitted-posts/views/css/submission-main.css' );*/
     wp_enqueue_style( 'bootstrap-style', "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" );
@@ -151,7 +152,7 @@ function pitch_enqueue_scripts(){
     wp_enqueue_script( 'bootstrap-datapicker-js', "https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.js", array(), '3.2' );
     wp_enqueue_script( 'bootstrap-image-js', get_template_directory_uri() .'/js/bootstrap-image-gallery.min.js', array(), '3.2' );
     wp_enqueue_script( 'bootstrap-image-min-js', "http://blueimp.github.io/Gallery/js/jquery.blueimp-gallery.min.js" );
-    wp_enqueue_script( 'pgwslideshow-min-js', "http://blueimp.github.io/Gallery/js/pgwslideshow.min.js" );
+    wp_enqueue_script( 'selectpicker', get_template_directory_uri() . '/js/bootstrap-select.min.js', array(), '1.0.8' );
 
 	// Flex slider
 	wp_enqueue_script( 'flexslider', get_template_directory_uri() . '/js/flexslider/jquery.flexslider.min.js', array( 'jquery' ), '1.8' );
@@ -568,61 +569,16 @@ function get_all_thumbnails() {
     if ($i != 0) echo '<div style="clear: both;"><small>' . $i . ' pictures</small></div>';
 
 }
-add_action( 'init', 'create_post_type_order' );
-function create_post_type_order() {
-    register_post_type( 'order',
-        array(
-            'labels' => array(
-                'name' => __( 'Orders' ),
-                'singular_name' => __( 'Orders' )
-            ),
-            'taxonomies' => array('category'),
-            'pending' => true,
-            'has_archive' => true,
-        )
-    );
-}
-add_action( 'init', 'create_post_type_master' );
-function create_post_type_master() {
-    register_post_type( 'master',
-        array(
-            'labels' => array(
-                'name' => __( 'Master' ),
-                'singular_name' => __( 'Master' )
-            ),
-            'taxonomies' => array('category'),
-            'pending' => true,
-            'has_archive' => true,
-        )
-    );
-}
-////// master manu page
-add_action( 'admin_menu', 'register_master_menu_page' );
 
-function register_master_menu_page(){
-    add_menu_page( 'Maters', 'Master', 'manage_options', 'masters', 'master_menu_page', '', 7);
-}
-
-function master_menu_page(){
-    $location = site_url().'/wp-admin/edit.php?post_type=master';
-    wp_redirect( $location );
-}
-/////// order manu page
-add_action( 'admin_menu', 'register_order_menu_page' );
-
-function register_order_menu_page(){
-    add_menu_page( 'Orders', 'Orders', 'manage_options', 'orders', 'order_menu_page', '', 6 );
-}
-
-function order_menu_page(){
-    $location = site_url().'/wp-admin/edit.php?post_type=order';
-    wp_redirect( $location );
-}
 add_filter ( 'publish_post', 'check_post' );
 function check_post()
 {
     global $wpdb;
     $postid = get_the_ID();
+    $post = get_post($postid);
+    $title = $post->post_title;
+    $content = $post->post_content;
+    $guid = $post->guid;
     $categoriesID = wp_get_post_categories($postid);
 
     if ($categoriesID[0] == 9) {
@@ -641,7 +597,7 @@ function check_post()
 
         if(!empty($mastersId)){
             foreach($mastersId as $mID){
-                $masters[] = $wpdb->get_results( "SELECT wp_posts.ID, user_email, wp_posts.post_content, wp_posts.post_title, wp_terms.name
+                $masters[] = $wpdb->get_results( "SELECT wp_posts.ID, user_email, wp_posts.post_content, wp_posts.post_title, wp_posts.guid, wp_terms.name
                                                 FROM wp_users
                                                 JOIN wp_posts on wp_posts.post_author = wp_users.ID
                                                 JOIN wp_term_relationships on wp_term_relationships.object_id = wp_posts.ID
@@ -651,13 +607,18 @@ function check_post()
             }
         }
 
-        $resavers = array();
+        $recipients = array();
         if(!empty($masters)) {
             foreach ($masters as $key=>$master) {
                 //var_dump($master[$key+1]['name'], $categoryCity);
                 if($master[1]['name']==$categoryCity && $master[2]['name']==$categoryDesc){
-                    array_push($resavers, $master[0]['user_email'], $master[0]['post_title'], $master[0]['post_content']);
-                    break;
+                    array_push($recipients, $master[0]['user_email']);
+                    $multiple_recipients = $recipients;
+                    $subj = $title;
+                    $body = $content;
+                    $link = $guid;
+                    echo 'mail sended';
+                    wp_mail( $multiple_recipients, $subj, $body, $link );
                 }
             }
         }

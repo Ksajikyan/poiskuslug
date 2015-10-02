@@ -24,7 +24,7 @@ if(have_posts()) :  ?>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default pull-left prev">
                             <i class="glyphicon glyphicon-chevron-left"></i>
-                            Previous
+                            PreviousPost on
                         </button>
                         <button type="button" class="btn btn-primary next">
                             Next

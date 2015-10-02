@@ -2,137 +2,12 @@
 /*
 Template Name: Order
 */
-
+session_start();
 
 get_header();
-session_start();
+
 require ( ABSPATH . 'wp-admin/includes/image.php' );
 
-//
-//if( 'POST' == $_SERVER['REQUEST_METHOD']  ) {
-//    if ( $_FILES ) {
-//        $files = $_FILES["order_image"];
-//        foreach ($files['name'] as $key => $value) {
-//            if ($files['name'][$key]) {
-//                $file = array(
-//                    'name' => $files['name'][$key],
-//                    'type' => $files['type'][$key],
-//                    'tmp_name' => $files['tmp_name'][$key],
-//                    'error' => $files['error'][$key],
-//                    'size' => $files['size'][$key]
-//                );
-//                $_FILES = array ("order_image" => $file);
-//                foreach ($_FILES as $file => $array) {
-//                    $newupload = my_handle_attachment($file,$pid);
-//                }
-//            }
-//        }
-//    }
-//
-//}
-// $post_id = $post->ID;
-//if ( isset( $_POST['html-upload'] ) && !empty( $_FILES ) ) {
-//    require_once(ABSPATH . 'wp-admin/includes/admin.php');
-//    $id = media_handle_upload('async-upload', $post_id); //post id of Client Files page
-//    unset($_FILES);
-//    if ( is_wp_error($id) ) {
-//        $errors['upload_error'] = $id;
-//        $id = false;
-//    }
-//
-//    if ($errors) {
-//        echo "<p>There was an error uploading your file.</p>";
-//    } else {
-//        echo "<p>Your file has been uploaded.</p>";
-//    }
-//}
-//
-//?>
-<!--    <form id="file-form" enctype="multipart/form-data" action="--><?php //echo $_SERVER['REQUEST_URI']; ?><!--" method="POST">-->
-<!---->
-<!--        <p id="async-upload-wrap"><label for="async-upload">upload</label>-->
-<!--            <input type="file" id="async-upload" name="async-upload"> <input type="submit" value="Upload" name="html-upload"></p>-->
-<!---->
-<!--        <p><input type="hidden" name="post_id" id="post_id" value="--><?php //echo $post_id ?><!--" />-->
-<!--            --><?php //wp_nonce_field('client-file-upload'); ?>
-<!--            <input type="hidden" name="redirect_to" value="--><?php //echo $_SERVER['REQUEST_URI']; ?><!--" /></p>-->
-<!---->
-<!--        <p><input type="submit" value="Save all changes" name="save" style="display: none;"></p>-->
-<!--    </form>-->
-<?php
-
-//if(isset($_POST['order_category_ID']) && !empty($_POST['order_category_ID']) && isset($_POST['order_city_ID']) && !empty($_POST['order_city_ID'])){
-//    $_SESSION["order_category"] = $_POST['order_category_ID'];
-//    $_SESSION["order_city"] = $_POST['order_city_ID'];
-//
-//
-//
-//}
-//
-//if (isset($_POST['order_title']) && !empty($_POST['order_title']) && isset($_POST['order_content']) && !empty($_POST['order_content']) && isset($_POST['order_datapicker']) && !empty($_POST['order_datapicker']) && isset($_POST['order_user_name']) && !empty($_POST['order_user_name']) && isset($_POST['order_user_email']) && !empty($_POST['order_user_email'])) {
-//    $order_title = $_POST['order_title'];
-//
-//    //$order_content = $_POST['order_content'];
-//    //$order_image = $_POST['order_image'];
-//    //$new_order_content = $order_content . '<a href="http://localhost/poiskuslug/wp-content/uploads/'.$order_image.'"><img src="http://localhost/poiskuslug/wp-content/uploads/' . $order_image . '" width="257" height="300" class="alignnone size-medium" /></a>';
-//    $order_datapicker = $_POST['order_datapicker'];
-//    if(isset($_FILES['order_image']) && !empty($_FILES['order_image'])){
-//        $order_image = $_FILES['order_image']['name'];
-//        $new_order_content = $_POST['order_content'].'<a href="http://localhost/poiskuslug/wp-content/uploads/'.$order_image.'"><img src="http://localhost/poiskuslug/wp-content/uploads/' . $order_image . '" width="257" height="300" class="alignnone size-medium" /></a>';
-//       // $target_path = $_SERVER['DOCUMENT_ROOT'] . "poiskuslug/wp-content/uploads/" . basename($_FILES['order_image']['name']);
-//
-//    }
-//    }
-//    else{
-//        $new_order_content = $_POST['order_content'];
-//    }
-//
-//    $order_user_name = $_POST['order_user_name'];
-//    $order_user_email = $_POST['order_user_email'];
-////    var_dump($order_title);
-//    var_dump($order_content);
-//    var_dump($order_datapicker);
-//    var_dump($order_user_name);
-//    var_dump($order_user_email);
-//    exit;
-
-//echo $order_city;
-//echo $order_category;
-//exit;
-
-//echo  $order_city;// $order_category;
-//echo  $order_category;// $order_category;
-//$int_order_city = intval($order_city);
-//$int_order_category = intval($order_category);
-
-//var_dump($int_order_city); exit;
-
-
-//$categories
-
-//var_dump($categories); exit;
-
-
-
-
-//    $post = array(
-//
-//    'comment_status' => 'open',
-//    'post_content'=> $new_order_content,
-//    'post_name'         =>  '',
-//    'post_status' => 'pending',
-//    'post_title' => $order_title,
-//    'post_type' => 'post',
-//        //'post_thumbnail' => $target_path.$order_image,
-//
-//        'post_category' => array(0=>9, 1=>$_SESSION["order_category"], 2=>$_SESSION["order_city"])
-//
-//);
-//
-//$the_order_post_id = wp_insert_post($post);
-//print_r($int_order_city);
-//print_r($int_order_category);
-//    update_post_meta( $the_order_post_id, 'order_user_name', $order_user_name );
 
 if(isset($_POST['order_category_ID']) && !empty($_POST['order_category_ID']) && isset($_POST['order_city_ID']) && !empty($_POST['order_city_ID'])){
     $order_category_id = $_POST['order_category_ID'];
@@ -142,24 +17,23 @@ if(isset($_POST['order_category_ID']) && !empty($_POST['order_category_ID']) && 
     $_SESSION["order_category_parent"] = $results;
 
 }
-if (isset($_POST['order_title']) && !empty($_POST['order_title']) && isset($_POST['order_content']) && !empty($_POST['order_content']) && isset($_POST['order_datepicker']) && !empty($_POST['order_datepicker']) && isset($_POST['order_user_name']) && !empty($_POST['order_user_name']) && isset($_POST['order_user_email']) && !empty($_POST['order_user_email'])) {
+else{
+    $location=site_url();
+    wp_redirect( $location);
+}
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['order_title']) && !empty($_POST['order_title']) && isset($_POST['order_content']) && !empty($_POST['order_content']) && isset($_POST['order_datepicker']) && !empty($_POST['order_datepicker']) && isset($_POST['order_user_name']) && !empty($_POST['order_user_name']) && isset($_POST['order_user_email']) && !empty($_POST['order_user_email'])) {
     $order_title = $_POST['order_title'];
-
     $order_user_name = $_POST['order_user_name'];
     $order_user_email = $_POST['order_user_email'];
     $order_user_tel = $_POST['order_user_tel'];
     $order_start_day = $_POST['order_datepicker'];
     $order_location = $_POST['order_location'];
     $order_content = $_POST['order_content'];
-    //$order_image = $_POST['order_image'];
-    //$new_order_content = $order_content . '<a href="http://localhost/poiskuslug/wp-content/uploads/'.$order_image.'"><img src="http://localhost/poiskuslug/wp-content/uploads/' . $order_image . '" width="257" height="300" class="alignnone size-medium" /></a>';
     $order_datapicker = $_POST['order_datapicker'];
     $order_images = array();
     if(isset($_FILES['order_image']) && $_FILES['order_image']!==NULL) {
-
         foreach ($_FILES["order_image"]["error"] as $key => $error) {
             if ($error == UPLOAD_ERR_OK) {
-
                 $uploaddir = ABSPATH.'wp-content/uploads/';
                 $fileOpt = explode('.', $_FILES['order_image']['name'][$key]);
                 $fileName = $fileOpt[0];
@@ -171,31 +45,16 @@ if (isset($_POST['order_title']) && !empty($_POST['order_title']) && isset($_POS
                 }
             }
         }
-
-        // $target_path = $_SERVER['DOCUMENT_ROOT'] . "poiskuslug/wp-content/uploads/" . basename($_FILES['order_image']['name']);
-
-        //$uploads_dir = get_template_directory().'/images/uploads';
-    }
-    else{
-
-        $new_order_content = $_POST['order_content'];
-
     }
     $post = array(
-
         'comment_status' => 'open',
         'post_content'=> $order_content,
         'post_name'         =>  '',
         'post_status' => 'pending',
         'post_title' => $order_title,
         'post_type' => 'post',
-
-        //'post_thumbnail' => site_url().'/wp-content/uploads/'.$order_image,
-
         'post_category' => array(0=>9, 1=>$_SESSION["order_category_parent"], 2=>$_SESSION["order_category"], 3=>15, 4=>$_SESSION["order_city"])
-
     );
-
     $the_order_post_id = wp_insert_post($post);
     update_post_meta( $the_order_post_id, 'order_user_name', $order_user_name );
     update_post_meta( $the_order_post_id, 'order_user_email', $order_user_email );
@@ -205,11 +64,7 @@ if (isset($_POST['order_title']) && !empty($_POST['order_title']) && isset($_POS
     foreach($order_images as $key=>$image){
         update_post_meta( $the_order_post_id, 'order_image'.$key, $image );
     }
-
 }
-
-
-
 ?>
 <div id="post-single">
 	<div class="container">
@@ -223,10 +78,8 @@ if (isset($_POST['order_title']) && !empty($_POST['order_title']) && isset($_POS
            endwhile; //resetting the page loop
            wp_reset_query(); //resetting the page query
            ?>
-
 		</div>
         <div class="content clearfix">
-
             <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script>
             <script>
                 "use strict";
@@ -243,7 +96,6 @@ if (isset($_POST['order_title']) && !empty($_POST['order_title']) && isset($_POS
                     }
                     map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);	// create new map in the map-canvas div
                 }
-
                 // function to geocode an address and plot it on a map
                 function codeAddress(address) {
                     geocoder.geocode( { 'address': address}, function(results, status) {
@@ -266,9 +118,8 @@ if (isset($_POST['order_title']) && !empty($_POST['order_title']) && isset($_POS
 
 	</div>
 </div>
-
 <div class="order_form_content">
-    <form action="<?php echo site_url(); ?>/order-3/" method="POST" class="wpcf7-form" enctype="multipart/form-data">
+    <form action="<?php echo site_url(); ?>/home/order/" method="POST" class="wpcf7-form" enctype="multipart/form-data">
 <div class="row">
         </div>
         <p><label for="user-submitted-title">Заголовок *</label><br>
@@ -306,14 +157,8 @@ if (isset($_POST['order_title']) && !empty($_POST['order_title']) && isset($_POS
             <label>ваш телефонный номер *</label><br>
             <input type="number" name="order_user_tel" value="" size="40" class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required oreder_author_name form-control col col-md-12" aria-required="true" aria-invalid="false" placeholder="ваш телефонный номер" required><br>
             <input type="checkbox" name="accept" required=""> <label> Я согласен </label><br>
-
-            <input id="order_form_submit" type="submit" name="html-upload" value="Сохранить" class="wpcf7-form-control wpcf7-submit btn"><img class="ajax-loader" src="http://localhost/poiskuslug/wp-content/plugins/contact-form-7/images/ajax-loader.gif" alt="Sending ..." style="visibility: hidden;"></p>
-
-
-
+            <input id="order_form_submit" type="submit" name="html-upload" value="Сохранить" class="wpcf7-form-control wpcf7-submit btn btn-primary"><img class="ajax-loader" src="http://localhost/poiskuslug/wp-content/plugins/contact-form-7/images/ajax-loader.gif" alt="Sending ..." style="visibility: hidden;"></p>
     </form>
-
     </div>
-
 <?php
 get_footer(); ?>

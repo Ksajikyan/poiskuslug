@@ -46,7 +46,7 @@ class DisplayCategoriesWidget extends WP_Widget
 				<label for="<?php echo $this->get_field_id('category'); ?>">
 					<?php _e('Choose category (optional):'); ?>
 				</label>
-				<select id="<?php echo $this->get_field_id('category'); ?>" class="widefat" name="<?php echo $this->get_field_name('category'); ?>">
+				<select  id="<?php echo $this->get_field_id('category'); ?>" class="widefat" name="<?php echo $this->get_field_name('category'); ?>">
 					<?php echo implode('', $cat_options); ?>
 				</select>
 			</p>
@@ -125,8 +125,8 @@ if($instance['show_format']==2)
 ?>
   <form action="<?php bloginfo('url'); ?>" method="get">
   <div>
-  <?php wp_dropdown_categories('orderby=name&show_count='.$showcount_value.'&child_of='.$cat_id.'&hide_empty='.$display_empty_categories.'&title_li=&number='.$dcw_limit); ?>
-  <input type="submit" name="submit" value="View" />
+  <?php wp_dropdown_categories('orderby=name&show_count='.$showcount_value.'&child_of='.$cat_id.'&hide_empty='.$display_empty_categories.'&title_li=&number='.$dcw_limit.'&class=search_cat'); ?>
+  <input class="search_cat_sub btn btn-primary" type="submit" name="submit" value="Найти" />
   </div>
   </form>
   

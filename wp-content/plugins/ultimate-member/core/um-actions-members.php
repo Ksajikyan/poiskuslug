@@ -56,13 +56,13 @@
 					?>
 				
 					<div class="um-clear"></div>
-					
+
 					<div class="um-search-submit">
 
 						<input type="hidden" name="um_search" id="um_search" value="1" />
-						
+
 						<a href="#" class="um-button um-do-search"><?php _e('Search','ultimatemember'); ?></a><a href="<?php echo $ultimatemember->permalinks->get_current_url( true ); ?>" class="um-button um-alt"><?php _e('Reset','ultimatemember'); ?></a>
-						
+
 					</div><div class="um-clear"></div>
 				
 				</form>

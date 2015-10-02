@@ -65,7 +65,7 @@ the_post(); ?>
 			<div class="post-info">
 				<?php
 				printf(
-					__('Post on %s by %s', 'pitch'),
+					__('добавлено %s %s', 'pitch'),
 					get_the_date(),
                     get_post_meta( get_the_ID(), 'order_user_name', true )
 

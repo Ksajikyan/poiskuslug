@@ -21,6 +21,8 @@ jQuery(function($){
         codeAddress(address);										// geocode the address
     });
     $(document).ready(function() {
-        $('#pgwSlideshow').pgwSlideshow();
+        $('.selectpicker').selectpicker();
+        $( ".um-search-submit a:last").hide();
     });
+
 });

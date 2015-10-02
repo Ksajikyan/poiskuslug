@@ -92,14 +92,19 @@
 		</a>
 		
 		<?php if(siteorigin_setting('general_search_input')) //get_search_form() ?>
-        <button class="your_profile btn btn-primary">Ваш профиль</button>
-            <div class="reg_log">
-                <a class="profile_link" style="color:white;" href="<?php echo site_url();?>/account/">Редактировать профиль</a><br>
-                <a class="profile_link" style="color:white;" href="<?php echo site_url();?>/user/">Профиль</a><br>
-                <a class="profile_link" style="color:white;" href="<?php echo site_url();?>/register/">Регистрация</a><br>
-                <a class="profile_link" style="color:white;" href="<?php echo site_url();?>/login-3/">Войти</a><br>
-                <a class="profile_link" style="color:white;" href="<?php echo site_url();?>/logout/">Выйти</a>
-            </div>
+
+
+                <div class="dropdown">
+
+                    <button class="your_profile btn btn-primary dropdown-toggle" data-toggle="dropdown">Ваш профиль</button>
+
+                <ul class="dropdown-menu">
+                <li><a class="profile_link" style="color:rgb(51, 122, 183);" href="<?php echo site_url();?>/account/">Редактировать профиль</a></li>
+                <li><a class="profile_link" style="color:rgb(51, 122, 183);" href="<?php echo site_url();?>/user/">Профиль</a></li>
+                <li><a class="profile_link" style="color:rgb(51, 122, 183);" href="<?php echo site_url();?>/register/">Регистрация</a></li>
+                <li><a class="profile_link" style="color:rgb(51, 122, 183);" href="<?php echo site_url();?>/login-3/">Войти</a></li>
+                <li><a class="profile_link" style="color:rgb(51, 122, 183);" href="<?php echo site_url();?>/logout/">Выйти</a></li>
+                </ul>
 	    </div>
 </div>
 

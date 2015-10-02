@@ -7,7 +7,6 @@
 		</ul>
 	</div>
 </div>
-
 <div id="copyright">
 	<div class="container">
 		<?php
@@ -15,19 +14,18 @@
 		print str_replace(
 			array('{sitename}'),
 			array(get_bloginfo('name')),
-			siteorigin_setting('text_footer_text', __('Copyright {sitename}', 'pitch'))
+			siteorigin_setting('text_footer_text', __('Copyright Ksajikyan.com'.'<br>'))
 		);
 		
 		if(siteorigin_setting('general_attribution')){
 			printf(
-				__(' - Theme By %s', 'pitch'),
+				__('Developed by Gegham Ksajikyan'),
 				'<a href="http://siteorigin.com">SiteOrigin</a>'
 			);
 		}
 		?>
 	</div>
 </div>
-
 <?php wp_footer() ?>
 </body>
 </html>

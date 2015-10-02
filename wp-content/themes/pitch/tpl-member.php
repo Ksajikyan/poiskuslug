@@ -15,7 +15,7 @@ echo '<h3 class="count_master"> У нас '.($user_count -1).' проверен�
     <div id="post-single">
         <div class="container">
             <div class="post-container">
-                <h1 class="post-title"><?php the_title() ?></h1>
+                <h1 class="post-title"><?php //the_title() ?></h1>
                 <?php while ( have_posts() ) : the_post(); ?>
                     <div class="entry-content" style="width: 70%; float: left;">
                         <?php echo the_content(); ?>
